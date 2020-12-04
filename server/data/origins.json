@@ -1,0 +1,42 @@
+[
+  {
+    "origin": "Brazil",
+    "_id": "BR"
+  },
+  {
+    "origin": "Ethiopia",
+    "_id": "ET"
+  },
+  {
+    "origin": "Burundi",
+    "_id": "BI"
+  },
+  {
+    "origin": "Mexico",
+    "_id": "MX"
+  },
+  {
+    "origin": "Kenya",
+    "_id": "KE"
+  },
+  {
+    "origin": "Honduras",
+    "_id": "HN"
+  },
+  {
+    "origin": "Guatemala",
+    "_id": "GT"
+  },
+  {
+    "origin": "Colombia",
+    "_id": "CO"
+  },
+  {
+    "origin": "Peru",
+    "_id": "PE"
+  },
+  {
+    "origin": "Panama",
+    "_id": "PA"
+  }
+]
