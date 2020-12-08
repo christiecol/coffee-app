@@ -14,11 +14,11 @@ export default function AllOriginsReducer(state = initialState, action) {
     }
 
     case "RESPONSE_ALL_ORIGINS": {
-      console.log(state);
+      console.log(action);
       return {
         ...state,
 
-        origins: action.payload,
+        origins: action.origins,
         pending: false,
       };
     }

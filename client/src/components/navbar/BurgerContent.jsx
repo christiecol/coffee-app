@@ -13,7 +13,7 @@ export const BurgerContent = () => {
         <Item to="/" aria-label="Brew Methods">
           Brew Methods
         </Item>
-        <Item to="/" aria-label="My recipes">
+        <Item to="/myrecipes" aria-label="My recipes">
           My recipes
         </Item>
       </Wrapper>
@@ -35,8 +35,8 @@ const Item = styled(NavLink)`
   color: white;
   text-decoration: none;
   padding: 2rem 0;
-  background-color: ${COLORS.cultured};
-  border-bottom: 1px solid ${COLORS.gainsboro};
+  background-color: ${COLORS.feldgrauLight};
+  border: 1px solid ${COLORS.gainsboro};
 
   font-style: bold;
   font-size: 1.3rem;

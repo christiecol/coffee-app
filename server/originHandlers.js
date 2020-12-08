@@ -62,19 +62,9 @@ const createOneOrigin = async (req, res) => {
 
 const updateOrigin = async (req, res) => {
   const { _id } = req.params;
-  const { origin } = req.body;
+  const { origin, img } = req.body;
 
   console.log(req.params);
-  // console.log(origin);
-
-  if (!origin) {
-    res.status(400).json({
-      status: 400,
-      data: req.body,
-      message: "Only update id and origin",
-    });
-    return;
-  }
 
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
@@ -84,13 +74,23 @@ const updateOrigin = async (req, res) => {
 
   try {
     const query = { _id };
-    const newValues = { $set: { origin } };
+    let newValues = {};
 
-    const updatedOrigin = await dbOrigins.updateOne(query, newValues);
+    if (origin && img) {
+      newValues = { $set: { origin, img } };
+    } else if (img && !origin) {
+      newValues = { $set: { img } };
+    } else if (origin && !img) {
+      newValues = { $set: { origin } };
+    }
 
-    res.status(201).json({ status: 201, origin: updatedOrigin });
+    const updatedData = await dbOrigins.updateOne(query, newValues);
+    console.log(updatedData);
+
+    res.status(201).json({ status: 201, data: updatedData });
   } catch (error) {
     res.status(500).json({ status: 500, message: error.message });
+    console.log(error.message);
   }
   client.close();
 };

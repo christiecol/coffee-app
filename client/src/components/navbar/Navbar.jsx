@@ -59,7 +59,7 @@ const Bar = styled.div`
   height: 3.5rem;
 
   color: white;
-  background-color: ${COLORS.feldgrauLight};
+  background-color: ${COLORS.feldgrauDark};
   z-index: 1000;
 `;
 

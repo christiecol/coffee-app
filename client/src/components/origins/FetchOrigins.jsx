@@ -23,12 +23,11 @@ export const FetchOrigins = () => {
     fetch("/api/origins")
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         if (res.error) {
           throw res.error;
         }
-        console.log(responseAllOrigins);
         dispatch(responseAllOrigins(res.origins));
+        console.log(res.origins);
         return res.origins;
       })
       .catch((error) => {
@@ -37,9 +36,5 @@ export const FetchOrigins = () => {
   }, []);
   console.log(responseAllOrigins);
 
-  return (
-    <>
-      <div>Hello</div>
-    </>
-  );
+  return null;
 };

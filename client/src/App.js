@@ -6,6 +6,7 @@ import GlobalStyles from "./GlobalStyles";
 import { HomePage } from "./pages/home-page/HomePage";
 import { Navbar } from "./components/navbar/Navbar";
 import { OriginsPage } from "./pages/origins-page/OriginsPage";
+import { MyRecipesPage } from "./pages/recipes-page/MyRecipesPage";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
 
           <Route exact path="/origins">
             <OriginsPage />
+          </Route>
+
+          <Route exact path="/myrecipes">
+            <MyRecipesPage />
           </Route>
         </Switch>
       </Router>
