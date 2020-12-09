@@ -18,3 +18,24 @@ export const responseAllOriginsError = (error) => {
     error,
   };
 };
+
+//recipes
+export const requestRecipe = () => {
+  return {
+    type: "REQUEST_RECIPE",
+  };
+};
+
+export const responseRecipe = (recipe) => {
+  return {
+    type: "RESPONSE_RECIPE",
+    recipe,
+  };
+};
+
+export const responseRecipeError = (error) => {
+  return {
+    type: "RESPONSE_RECIPE_ERROR",
+    error,
+  };
+};

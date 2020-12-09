@@ -1,35 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { getRecipe } from "../../../redux/reducers/RecipesReducer";
 
 import { IconContext } from "react-icons";
-import { FiGlobe, FiCoffee, FiTag } from "react-icons/fi";
 import { GiMokaPot, GiCoffeeBeans } from "react-icons/gi";
 import { IoWaterOutline, IoTimerOutline } from "react-icons/io5";
 import { VscNote } from "react-icons/vsc";
 import { MdComment } from "react-icons/md";
 import { COLORS } from "../../../constants";
-import { SingleRecipeButton } from "./SingleRecipeButton";
 
-export const SingleRecipe = () => {
+export const SingleRecipe = ({ recipe }) => {
   return (
     <>
-      <SingleRecipeButton />
       <IconContext.Provider value={{ size: "1rem" }}>
         <Wrapper>
           <LeftDiv>
             <ItemDiv>
-              <FiTag />
-              <P>Reiniel Ramirez</P>
-            </ItemDiv>
-
-            <ItemDiv>
               <GiMokaPot />
-              <P>Aeropress</P>
+              <P>{recipe.brewMethod}</P>
             </ItemDiv>
 
             <ItemDiv>
               <GiCoffeeBeans />
-              <P>11.</P>
+              <P>{recipe.grindSize}</P>
             </ItemDiv>
 
             <ItemDiv>
@@ -39,7 +33,9 @@ export const SingleRecipe = () => {
 
             <ItemDiv>
               <IoTimerOutline />
-              <P>1m 30s</P>
+              <P>
+                {recipe.minutes}m {recipe.seconds}s
+              </P>
             </ItemDiv>
           </LeftDiv>
 
@@ -48,7 +44,7 @@ export const SingleRecipe = () => {
               <span>
                 <VscNote />
               </span>
-              <P>Rasberry, Peach, Honey</P>
+              <P>{recipe.notes}</P>
             </ItemDiv>
 
             <ItemDiv>
@@ -56,7 +52,7 @@ export const SingleRecipe = () => {
                 <MdComment />
               </span>
 
-              <P>Would have made the grounds coarser. Otherwise pretty good.</P>
+              <P>{recipe.comments}</P>
             </ItemDiv>
           </RightDiv>
         </Wrapper>
@@ -79,7 +75,7 @@ const Wrapper = styled.div`
   padding: 0 20px 10px;
 
   border-radius: 0 0 15px 15px;
-  box-shadow: 0px 5px 9px 0.5px #252525;
+  /* box-shadow: 0px 5px 9px 0.5px #252525; */
 `;
 
 const LeftDiv = styled.div`

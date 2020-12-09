@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { FetchOrigins } from "../../components/origins/FetchOrigins";
 
+import { FetchOrigins } from "../../components/origins/FetchOrigins";
 import { getOrigins } from "../../redux/reducers/AllOriginsReducer";
 
 export const OriginsPage = () => {
@@ -21,7 +21,6 @@ export const OriginsPage = () => {
         return (
           <Card>
             <ImgDiv>
-              {" "}
               <Image src={origin.img} />
               <Country>{origin.origin}</Country>
             </ImgDiv>

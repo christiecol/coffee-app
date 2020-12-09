@@ -1,6 +1,6 @@
 //todo: tooltip for more information
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { IconContext } from "react-icons";
@@ -11,47 +11,105 @@ import { VscNote } from "react-icons/vsc";
 import { MdComment } from "react-icons/md";
 
 import { COLORS } from "../../../constants";
+import { responseRecipe } from "../../../redux/actions/actions";
 
 export const NewRecipeFormContent = () => {
-  const handleSubmit = (ev) => {};
+  const [origin, setOrigin] = useState("");
+  const [roaster, setRoaster] = useState("");
+  const [name, setName] = useState("");
+  const [brewMethod, setBrewMethod] = useState("");
+  const [grindSize, setGrindSize] = useState("");
+  const [water, setWater] = useState("");
+  const [minutes, setMinutes] = useState("");
+  const [seconds, setSeconds] = useState("");
+  const [notes, setNotes] = useState("");
+  const [comments, setComments] = useState("");
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+
+    fetch("/api/recipes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        origin,
+        roaster,
+        name,
+        brewMethod,
+        grindSize,
+        water,
+        minutes,
+        seconds,
+        notes,
+        comments,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
   return (
     <>
       <IconContext.Provider value={{ size: "2rem" }}>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Title>What Am I Drinking Today?</Title>
 
           <IconInput>
             <Icon>
               <FiGlobe />
             </Icon>
-            <Input type="text" placeholder="Origin" />
+            <Input
+              value={origin}
+              type="text"
+              placeholder="Origin"
+              onChange={(ev) => setOrigin(ev.target.value)}
+            />
           </IconInput>
 
           <IconInput>
             <Icon>
               <FiCoffee />
             </Icon>
-            <Input type="text" placeholder="Roaster" />
+            <Input
+              value={roaster}
+              type="text"
+              placeholder="Roaster"
+              onChange={(ev) => setRoaster(ev.target.value)}
+            />
           </IconInput>
 
           <IconInput>
             <Icon>
               <FiTag />
             </Icon>
-            <Input type="text" placeholder="Name" />
+            <Input
+              value={name}
+              type="text"
+              placeholder="Name"
+              onChange={(ev) => setName(ev.target.value)}
+            />
           </IconInput>
 
           <IconInput>
             <Icon>
               <GiMokaPot />
             </Icon>
-            <Input list="methods" placeholder="Brew Method" />
+            <Input
+              list="methods"
+              value={brewMethod}
+              placeholder="Brew Method"
+              onChange={(ev) => setBrewMethod(ev.target.value)}
+            />
             <datalist id="methods">
-              <option value="Chemex" />
-              <option value="Pour Over" />
               <option value="Aeropress" />
+              <option value="Chemex" />
               <option value="French Press" />
               <option value="Moka Pot" />
+              <option value="Pour Over" />
               <option value="Siphon" />
             </datalist>
           </IconInput>
@@ -60,14 +118,24 @@ export const NewRecipeFormContent = () => {
             <Icon>
               <GiCoffeeBeans />
             </Icon>
-            <Input type="text" placeholder="Grind Size" />
+            <Input
+              value={grindSize}
+              type="text"
+              placeholder="Grind Size"
+              onChange={(ev) => setGrindSize(ev.target.value)}
+            />
           </IconInput>
 
           <IconInput>
             <Icon>
               <IoWaterOutline />
             </Icon>
-            <Input type="text" placeholder="Grams of Water" />
+            <Input
+              value={water}
+              type="text"
+              placeholder="Grams of Water"
+              onChange={(ev) => setWater(ev.target.value)}
+            />
           </IconInput>
 
           <IconInput>
@@ -75,28 +143,47 @@ export const NewRecipeFormContent = () => {
               <IoTimerOutline />
             </Icon>
             <span>
-              <TimeInput type="text" placeholder="Time" />m
+              <TimeInput
+                value={minutes}
+                type="text"
+                placeholder="Time"
+                onChange={(ev) => setMinutes(ev.target.value)}
+              />
+              m
             </span>
-            <TimeInput type="text" />s
+            <TimeInput
+              value={seconds}
+              type="text"
+              onChange={(ev) => setSeconds(ev.target.value)}
+            />
+            s
           </IconInput>
 
           <IconInput>
             <Icon>
               <VscNote />
             </Icon>
-            <Input type="text" placeholder="Primary Tasting Notes" />
+            <Input
+              value={notes}
+              type="text"
+              placeholder="Primary Tasting Notes"
+              onChange={(ev) => setNotes(ev.target.value)}
+            />
           </IconInput>
 
           <IconInput>
             <Icon>
               <MdComment />
             </Icon>
-            <Input placeholder="Additional Comments" />
+            <Input
+              value={comments}
+              placeholder="Additional Comments"
+              type="text"
+              onChange={(ev) => setComments(ev.target.value)}
+            />
           </IconInput>
 
-          <Button type="submit" onClick={(ev) => ev.preventDefault()}>
-            Submit
-          </Button>
+          <Button type="submit">Submit</Button>
         </Form>
       </IconContext.Provider>
     </>

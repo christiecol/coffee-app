@@ -7,6 +7,7 @@ import { HomePage } from "./pages/home-page/HomePage";
 import { Navbar } from "./components/navbar/Navbar";
 import { OriginsPage } from "./pages/origins-page/OriginsPage";
 import { MyRecipesPage } from "./pages/recipes-page/MyRecipesPage";
+import { Mui } from "./components/Mui";
 
 function App() {
   return (
@@ -14,13 +15,15 @@ function App() {
       <Router>
         <GlobalStyles />
 
-        <NavDiv>
-          <Navbar />
-        </NavDiv>
+        <NavDiv>{/* <Navbar /> */}</NavDiv>
 
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+
+          <Route exact path="/messaroundwithmui">
+            <Mui />
           </Route>
 
           <Route exact path="/origins">

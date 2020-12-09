@@ -9,7 +9,6 @@ import items from "../../data/items.json";
 import { SingleHomePageItem } from "./SingleHomePageItem";
 
 export const HomePageItems = () => {
-  console.log("items", items);
   return (
     <>
       <div>

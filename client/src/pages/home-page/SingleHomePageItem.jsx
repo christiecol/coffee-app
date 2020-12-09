@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { COLORS } from "../../constants";
 
 export const SingleHomePageItem = ({ item: { img, title, description } }) => {
-  console.log(img, title, description);
   return (
     <ItemDiv>
       <Img src={img} />

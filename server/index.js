@@ -8,7 +8,14 @@ const {
   singleOrigin,
   createOneOrigin,
   updateOrigin,
-} = require("./originHandlers");
+} = require("./handlers/originHandlers");
+
+const {
+  allRecipes,
+  singleRecipe,
+  createOneRecipe,
+  updateRecipe,
+} = require("./handlers/recipeHandlers");
 
 const PORT = 8000;
 
@@ -37,6 +44,19 @@ app
 
   //update data
   .put("/api/origins/:_id", updateOrigin)
+
+  //recipe
+  // get all
+  .get("/api/recipes", allRecipes)
+
+  //get one
+  .get("/api/recipes/:_id", singleRecipe)
+
+  //post one
+  .post("/api/recipes", createOneRecipe)
+
+  //update data
+  .put("/api/recipes/:_id", updateRecipe)
 
   //-----------------------
 
