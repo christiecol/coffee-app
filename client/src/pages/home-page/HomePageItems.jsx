@@ -32,6 +32,7 @@ export const HomePageItems = () => {
 
 const BannerImgAndText = styled.div`
   position: relative;
+  z-index: -100;
 `;
 
 const BannerImg = styled.img`

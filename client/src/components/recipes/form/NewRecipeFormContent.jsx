@@ -26,8 +26,6 @@ export const NewRecipeFormContent = () => {
   const [comments, setComments] = useState("");
 
   const handleSubmit = (ev) => {
-    ev.preventDefault();
-
     fetch("/api/recipes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

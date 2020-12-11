@@ -15,7 +15,7 @@ function App() {
       <Router>
         <GlobalStyles />
 
-        <NavDiv>{/* <Navbar /> */}</NavDiv>
+        <Navbar />
 
         <Switch>
           <Route exact path="/">
@@ -39,7 +39,7 @@ function App() {
   );
 }
 
-const NavDiv = styled.div`
-  margin-top: 0;
-`;
+// const NavDiv = styled.div`
+//   margin-top: 0;
+// `;
 export default App;

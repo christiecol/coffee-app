@@ -27,3 +27,12 @@ export const useViewport = () => {
   }, []); //runs on mount
   return windowSize;
 };
+
+//sort recipes
+// const tweets = Object.values(data.tweetsById);
+// const sortedTweets = tweets.sort((a, b) =>
+//   a.timestamp < b.timestamp ? 1 : b.timestamp < a.timestamp ? -1 : 0
+// );
+// // console.log(tweets);
+// setHomeStatus("idle");
+// setCurrentFeed(sortedTweets);

@@ -15,19 +15,16 @@ export const FetchRecipes = () => {
     fetch("/api/recipes")
       .then((res) => res.json())
       .then((res) => {
-        console.log("result", res);
         if (res.error) {
           throw res.error;
         }
         dispatch(responseRecipe(res.recipes));
-        console.log(res.recipes);
         return res.recipes;
       })
       .catch((error) => {
         dispatch(responseRecipeError(error));
       });
   }, []);
-  console.log(responseRecipe);
 
   return null;
 };

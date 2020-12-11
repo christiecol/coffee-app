@@ -5,10 +5,11 @@ import { IconContext } from "react-icons";
 import { FiGlobe, FiCoffee, FiTag } from "react-icons/fi";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 
-import { SingleRecipe } from "./SingleRecipe";
+import { AllRecipes } from "./AllRecipes";
+import { RecipeFavouriteButton } from "./RecipeFavouriteButton";
 import { COLORS } from "../../../constants";
 
-export const RecipeComponent = ({ recipe }) => {
+export const RecipeComponent = ({ recipe, handleFavouritesClick }) => {
   const [toggle, setToggle] = useState(false);
 
   const handleToggle = () => {
@@ -21,33 +22,48 @@ export const RecipeComponent = ({ recipe }) => {
       <IconContext.Provider value={{ size: "1.2rem" }}>
         <HeaderDiv>
           <div>
-            <Button onClick={() => handleToggle()}>
-              <ItemDiv>
-                <FiCoffee />
-                <P>{recipe.roaster}</P>
-              </ItemDiv>
+            <RecipeInfo>
+              {recipe.roaster && (
+                <ItemDiv>
+                  <FiCoffee />
+                  <P>{recipe.roaster}</P>
+                </ItemDiv>
+              )}
 
-              <ItemDiv>
-                <FiGlobe />
-                <P>{recipe.origin}</P>
-              </ItemDiv>
+              {recipe.origin && (
+                <ItemDiv>
+                  <FiGlobe />
+                  <P>{recipe.origin}</P>
+                </ItemDiv>
+              )}
 
-              <ItemDiv>
-                <FiTag />
-                <P>{recipe.name}</P>
-              </ItemDiv>
-            </Button>
+              {recipe.name && (
+                <ItemDiv>
+                  <FiTag />
+                  <P>{recipe.name}</P>
+                </ItemDiv>
+              )}
+            </RecipeInfo>
+
+            <RecipeFavouriteButton
+              handleFavouritesClick={handleFavouritesClick}
+              recipe={recipe}
+            />
             <DropdownButton onClick={() => handleToggle()}>
               <DropdownSelector>
                 {!toggle ? (
                   <>
-                    <p>View full recipe</p>
-                    <IoIosArrowDropdown />
+                    <FullReciP>
+                      View full recipe
+                      <IoIosArrowDropdown />
+                    </FullReciP>
                   </>
                 ) : (
                   <>
-                    <p>See Less</p>
-                    <IoIosArrowDropup />
+                    <FullReciP>
+                      See Less
+                      <IoIosArrowDropup />
+                    </FullReciP>
                   </>
                 )}
               </DropdownSelector>
@@ -55,7 +71,7 @@ export const RecipeComponent = ({ recipe }) => {
           </div>
         </HeaderDiv>
       </IconContext.Provider>
-      {toggle ? <SingleRecipe recipe={recipe} /> : null}
+      {toggle ? <AllRecipes recipe={recipe} /> : null}
     </>
   );
 };
@@ -65,7 +81,7 @@ const HeaderDiv = styled.div`
   justify-content: center;
 `;
 
-const Button = styled.button`
+const RecipeInfo = styled.div`
   all: unset;
 
   display: flex;
@@ -84,7 +100,7 @@ const Button = styled.button`
   /* box-shadow: 0px 5px 9px 0.5px #252525; */
 `;
 
-const DropdownButton = styled(Button)`
+const DropdownButton = styled(RecipeInfo)`
   margin-top: 0;
   border-radius: 0;
   box-shadow: 0;
@@ -95,7 +111,8 @@ const DropdownSelector = styled.div`
   display: flex;
   flex-grow: 1;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 const P = styled.p`
@@ -112,4 +129,13 @@ const ItemDiv = styled.div`
   padding: 0.3rem 0;
 
   /* background-color: ${COLORS.cultured}; */
+`;
+
+const FullReciP = styled.p`
+  display: flex;
+  align-items: center;
+`;
+
+const OptionsDiv = styled(ItemDiv)`
+  justify-content: space-around;
 `;

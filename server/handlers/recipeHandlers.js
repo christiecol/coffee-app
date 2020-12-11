@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 require("dotenv").config();
 const { MONGO_URI } = process.env;
@@ -27,7 +27,7 @@ const allRecipes = async (req, res) => {
 };
 
 const singleRecipe = async (req, res) => {
-  const _id = req.params._id;
+  const { _id } = req.params;
 
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
@@ -36,7 +36,7 @@ const singleRecipe = async (req, res) => {
   const dbRecipes = db.collection("Recipes");
 
   try {
-    const oneRecipe = await dbRecipes.findOne({ _id });
+    const oneRecipe = await dbRecipes.findOne({ _id: ObjectId(_id) });
     res.status(200).json({ status: 200, recipe: oneRecipe });
   } catch (error) {
     res.status(404).json({ status: 404, message: error.message });
@@ -46,6 +46,7 @@ const singleRecipe = async (req, res) => {
 
 const createOneRecipe = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
+  const timestamp = new Date().toISOString();
   const {
     origin,
     roaster,
@@ -109,9 +110,32 @@ const updateRecipe = async (req, res) => {
   client.close();
 };
 
+const deleteRecipe = async (req, res) => {
+  const { _id } = req.params;
+  console.log("delete", _id);
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+
+  const db = client.db(dbName);
+  const dbRecipes = db.collection("Recipes");
+
+  try {
+    await dbRecipes.deleteOne({
+      _id: ObjectId(_id),
+    });
+
+    res.json({ status: 204, _id });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ status: 500, data: req.body, message: error.message });
+  }
+};
+
 module.exports = {
   allRecipes,
   singleRecipe,
   createOneRecipe,
   updateRecipe,
+  deleteRecipe,
 };

@@ -15,6 +15,7 @@ const {
   singleRecipe,
   createOneRecipe,
   updateRecipe,
+  deleteRecipe,
 } = require("./handlers/recipeHandlers");
 
 const PORT = 8000;
@@ -58,6 +59,8 @@ app
   //update data
   .put("/api/recipes/:_id", updateRecipe)
 
+  //delete data
+  .delete("/api/recipes/:_id", deleteRecipe)
   //-----------------------
 
   .get("*", (req, res) => {
