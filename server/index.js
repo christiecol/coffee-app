@@ -4,6 +4,12 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 
 const {
+  signUp,
+  logIn,
+  addFavourite,
+} = require("./handlers/signUpLoginHandlers");
+
+const {
   allOrigins,
   singleOrigin,
   createOneOrigin,
@@ -23,7 +29,6 @@ const PORT = 8000;
 const app = express();
 
 app
-  // .use(helmet())
 
   .use(morgan("tiny"))
 
@@ -33,6 +38,12 @@ app
 
   // RESTful endpoints
   //-----------------------
+  // signup
+  .post("/signup", signUp)
+
+  //login
+  .post("/login", logIn)
+
   //origins
   // get all
   .get("/api/origins", allOrigins)
@@ -61,6 +72,9 @@ app
 
   //delete data
   .delete("/api/recipes/:_id", deleteRecipe)
+
+  //add a favourite
+  .post("/addfavourite", addFavourite)
   //-----------------------
 
   .get("*", (req, res) => {

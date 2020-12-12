@@ -8,6 +8,7 @@ import { Navbar } from "./components/navbar/Navbar";
 import { OriginsPage } from "./pages/origins-page/OriginsPage";
 import { MyRecipesPage } from "./pages/recipes-page/MyRecipesPage";
 import { Mui } from "./components/Mui";
+import { LogInPage } from "./pages/log-in/LoginPage";
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
 
         <Switch>
           <Route exact path="/">
+            <LogInPage />
+          </Route>
+
+          <Route exact path="/home">
             <HomePage />
           </Route>
 

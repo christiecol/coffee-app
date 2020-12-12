@@ -1,3 +1,11 @@
+//users
+export const responseUser = (email) => {
+  return {
+    type: "RESPONSE_USER",
+    email,
+  };
+};
+
 //origins
 export const requestAllOrigins = () => {
   return {

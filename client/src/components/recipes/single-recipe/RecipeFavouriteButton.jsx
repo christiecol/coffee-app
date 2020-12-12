@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { IconContext } from "react-icons";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
@@ -11,17 +11,53 @@ import {
   removeFromFavourites,
 } from "../../../redux/actions/actions";
 
+import { getUser } from "../../../redux/reducers/UsersReducer";
+
 export const RecipeFavouriteButton = ({ recipe }) => {
   const [toggle, setToggle] = useState(false);
+  const [currentUserEmail, setCurrentUserEmail] = useState("");
+  const [recipeId, setRecipeId] = useState("");
+
+  const state = useSelector(getUser);
+
+  console.log(state);
   const dispatch = useDispatch();
 
-  const handleToggleFavourite = () => {
-    setToggle(!toggle);
-    dispatch(addToFavourites(recipe));
-  };
+  // const handleToggleFavourite = () => {
+  //   dispatch(addToFavourites(recipe));
+  // };
 
-  const handleToggleUnfavourite = () => {
-    dispatch(removeFromFavourites(recipe));
+  // const handleToggleUnfavourite = () => {
+  //   dispatch(removeFromFavourites(recipe));
+  // };
+
+  const handleFavouriteRecipe = () => {
+    setToggle(!toggle);
+
+    fetch("/addfavourite", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        currentUserEmail,
+        recipeId,
+      }),
+    })
+      .then((res) => {
+        if (res.error) {
+          throw res.error;
+        }
+        setRecipeId(recipe._id);
+
+        return {
+          recipeId,
+          email: currentUserEmail,
+          status: res.status,
+          ...res.json(),
+        };
+      })
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   return (
@@ -31,8 +67,9 @@ export const RecipeFavouriteButton = ({ recipe }) => {
           <div>
             <DropdownSelector>
               <IconButton
+                value={(currentUserEmail, recipeId)}
                 onClick={() => {
-                  handleToggleFavourite();
+                  handleFavouriteRecipe();
                 }}
               >
                 {!toggle ? <MdFavoriteBorder /> : <MdFavorite />}

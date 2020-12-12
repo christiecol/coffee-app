@@ -9,7 +9,7 @@ import { AllRecipes } from "./AllRecipes";
 import { RecipeFavouriteButton } from "./RecipeFavouriteButton";
 import { COLORS } from "../../../constants";
 
-export const RecipeComponent = ({ recipe, handleFavouritesClick }) => {
+export const RecipeComponent = ({ recipe }) => {
   const [toggle, setToggle] = useState(false);
 
   const handleToggle = () => {
@@ -45,10 +45,7 @@ export const RecipeComponent = ({ recipe, handleFavouritesClick }) => {
               )}
             </RecipeInfo>
 
-            <RecipeFavouriteButton
-              handleFavouritesClick={handleFavouritesClick}
-              recipe={recipe}
-            />
+            <RecipeFavouriteButton recipe={recipe} />
             <DropdownButton onClick={() => handleToggle()}>
               <DropdownSelector>
                 {!toggle ? (
