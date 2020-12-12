@@ -16,19 +16,14 @@ function App() {
       <Router>
         <GlobalStyles />
 
-        <Navbar />
-
         <Switch>
           <Route exact path="/">
             <LogInPage />
           </Route>
 
           <Route exact path="/home">
+            <Navbar />
             <HomePage />
-          </Route>
-
-          <Route exact path="/messaroundwithmui">
-            <Mui />
           </Route>
 
           <Route exact path="/origins">

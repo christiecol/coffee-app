@@ -10,6 +10,9 @@ import { AiOutlineMail } from "react-icons/ai";
 import { COLORS } from "../../constants";
 import { SignUpForm } from "./SignUpForm";
 import { responseUser } from "../../redux/actions/actions";
+import { requirePropFactory } from "@material-ui/core";
+
+import Coffee from "../../images/nathan-dumlao-zUNs99PGDg0-unsplash.jpg";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -48,48 +51,61 @@ export const LoginForm = () => {
 
   return (
     <Wrapper>
-      <IconContext.Provider value={{ size: "1.5rem" }}>
-        <form onSubmit={handleLogin}>
-          <EmailPassword>
-            <InputDivEmail>
-              <Icon>
-                <AiOutlineMail />
-              </Icon>
-              <Input
-                value={email}
-                onChange={(ev) => setEmail(ev.target.value)}
-                type="text"
-                placeholder="email"
-              />
-            </InputDivEmail>
-            <InputDivPass>
-              <Icon>
-                <FiKey />
-              </Icon>
-              <Input
-                value={password}
-                onChange={(ev) => setPassword(ev.target.value)}
-                type="password"
-                placeholder="password"
-              />
-            </InputDivPass>
-            <Button type="submit">Login</Button>
-            <p>Don't have an account already?</p>
-            <SignUpForm />
-          </EmailPassword>
-        </form>
-      </IconContext.Provider>
+      <WrapperOverlay>
+        <IconContext.Provider value={{ size: "1.5rem" }}>
+          <form onSubmit={handleLogin}>
+            <EmailPassword>
+              <InputDivEmail>
+                <Icon>
+                  <AiOutlineMail />
+                </Icon>
+                <Input
+                  value={email}
+                  onChange={(ev) => setEmail(ev.target.value)}
+                  type="text"
+                  placeholder="email"
+                />
+              </InputDivEmail>
+              <InputDivPass>
+                <Icon>
+                  <FiKey />
+                </Icon>
+                <Input
+                  value={password}
+                  onChange={(ev) => setPassword(ev.target.value)}
+                  type="password"
+                  placeholder="password"
+                />
+              </InputDivPass>
+              <Button type="submit">Login</Button>
+              <p>Don't have an account already?</p>
+              <SignUpForm />
+            </EmailPassword>
+          </form>
+        </IconContext.Provider>
+      </WrapperOverlay>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  height: 100vh;
+  background-image: url(${Coffee});
+  /* background-attachment: fixed; */
+  background-size: cover;
+  overflow: hidden;
+`;
+
+const WrapperOverlay = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  max-width: 100vw;
+  height: 100vh;
+
+  color: white;
+  background-color: rgba(0, 0, 0, 0.36);
 `;
 
 const EmailPassword = styled.div`
@@ -99,16 +115,21 @@ const EmailPassword = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
 
-  padding: 1.5rem;
+  padding: 2rem 0;
+
+  width: 70vw;
 `;
 
 const InputDivEmail = styled.div`
   display: flex;
 
-  margin: 0.5rem 2.2rem 1.7rem;
-  border-radius: 7px;
+  margin-bottom: 2rem;
+  padding: 2px 10px 2px 0;
 
-  background-color: ${COLORS.cultured};
+  width: 50vw;
+
+  border-radius: 35px;
+  background: rgba(255, 255, 255, 0.2);
 `;
 
 const InputDivPass = styled(InputDivEmail)``;
@@ -119,21 +140,27 @@ const Icon = styled.span`
   justify-content: center;
   align-items: center;
 
-  padding: 5px;
+  padding: 5px 5px 5px 20px;
   position: relative;
 `;
 
 const Input = styled.input`
-  all: unset;
   outline: none;
+  border: none;
+
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  font-weight: 300;
+
   height: 3rem;
-  width: 10rem;
+  width: 100%;
+  padding: 10px 0 10px 15px;
 
-  /* border-radius: 5px;
-  border: none; */
+  color: white;
+  background: transparent;
 
-  &:focus {
-    outline: ${COLORS.desertSand};
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.8);
   }
 `;
 
@@ -143,13 +170,19 @@ const Button = styled.button`
 
   text-align: center;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 
-  margin-top: 0.5rem;
-  padding: 10px;
-  width: 10rem;
+  padding: 10px 0;
+  width: 50vw;
+  margin-bottom: 1.5rem;
   border-radius: 20px;
 
-  color: ${COLORS.blackCoffee};
-  background-color: ${COLORS.cultured};
+  border: 2px solid white;
+  color: white;
+  background: none;
+
+  &:hover {
+    color: ${COLORS.desertSand};
+    border: 2px solid ${COLORS.desertSand};
+  }
 `;

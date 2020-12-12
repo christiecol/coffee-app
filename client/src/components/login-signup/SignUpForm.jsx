@@ -156,7 +156,6 @@ const EmailPassword = styled.div`
 const InputDivEmail = styled.div`
   display: flex;
 
-  margin: 0.5rem 2.2rem 1.7rem;
   border-radius: 7px;
 
   background-color: ${COLORS.cultured};
@@ -194,13 +193,20 @@ const Button = styled.button`
 
   text-align: center;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 
   margin-top: 0.5rem;
-  padding: 10px;
-  width: 10rem;
+  padding: 10px 0;
+  width: 50vw;
+
   border-radius: 20px;
 
-  color: ${COLORS.blackCoffee};
-  background-color: ${COLORS.cultured};
+  border: 2px solid white;
+  color: white;
+  background: none;
+
+  &:hover {
+    color: ${COLORS.desertSand};
+    border: 2px solid ${COLORS.desertSand};
+  }
 `;
