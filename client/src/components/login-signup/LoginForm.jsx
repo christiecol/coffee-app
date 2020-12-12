@@ -22,8 +22,15 @@ export const LoginForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  function validateEmail(email) {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+
   const handleLogin = (ev) => {
     ev.preventDefault();
+    validateEmail(email);
+
     fetch("/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -49,12 +56,17 @@ export const LoginForm = () => {
       .catch((err) => err.message);
   };
 
+  const goToHome = () => {
+    history.push("/home");
+  };
+
   return (
     <Wrapper>
       <WrapperOverlay>
         <IconContext.Provider value={{ size: "1.5rem" }}>
           <form onSubmit={handleLogin}>
             <EmailPassword>
+              <H2>Already a member?</H2>
               <InputDivEmail>
                 <Icon>
                   <AiOutlineMail />
@@ -62,8 +74,11 @@ export const LoginForm = () => {
                 <Input
                   value={email}
                   onChange={(ev) => setEmail(ev.target.value)}
-                  type="text"
+                  type="email"
                   placeholder="email"
+                  required="required"
+                  pattern=".+@.+.."
+                  aria-required="true"
                 />
               </InputDivEmail>
               <InputDivPass>
@@ -75,11 +90,15 @@ export const LoginForm = () => {
                   onChange={(ev) => setPassword(ev.target.value)}
                   type="password"
                   placeholder="password"
+                  required="required"
+                  aria-required="true"
                 />
               </InputDivPass>
               <Button type="submit">Login</Button>
-              <p>Don't have an account already?</p>
+              <H2>Don't have an account?</H2>
               <SignUpForm />
+              <H2>Or</H2>
+              <A href="/home">Continue as a guest</A>
             </EmailPassword>
           </form>
         </IconContext.Provider>
@@ -130,6 +149,8 @@ const InputDivEmail = styled.div`
 
   border-radius: 35px;
   background: rgba(255, 255, 255, 0.2);
+
+  transition: 0.3s ease-in-out;
 `;
 
 const InputDivPass = styled(InputDivEmail)``;
@@ -158,10 +179,17 @@ const Input = styled.input`
 
   color: white;
   background: transparent;
+  transition: 0.3s ease-in-out;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.8);
   }
+`;
+
+const H2 = styled.h2`
+  font-size: 1.2rem;
+
+  margin: 1rem 0;
 `;
 
 const Button = styled.button`
@@ -180,9 +208,22 @@ const Button = styled.button`
   border: 2px solid white;
   color: white;
   background: none;
+  transition: 0.3s ease-in-out;
 
   &:hover {
     color: ${COLORS.desertSand};
     border: 2px solid ${COLORS.desertSand};
+  }
+`;
+
+const A = styled.a`
+  all: unset;
+  cursor: pointer;
+
+  font-size: 1.4rem;
+  color: ${COLORS.desertSand};
+
+  &:hover {
+    color: white;
   }
 `;

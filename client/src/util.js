@@ -28,6 +28,22 @@ export const useViewport = () => {
   return windowSize;
 };
 
+//form Validation
+export const initialFormState = {
+  email: "",
+  password: "",
+};
+
+//form validation
+export const errorMessages = {
+  unavailable: "Item out of stock. :(",
+  "repeat-customer":
+    "Exiting user. Not allowed to place another order at the moment.",
+  undeliverable: "Outside of delivery zone. :(",
+  "missing-data": "Oops! Looks like we're missing some information.",
+  "invalid-email": "Please enter a valid email.",
+};
+
 //sort recipes
 // const tweets = Object.values(data.tweetsById);
 // const sortedTweets = tweets.sort((a, b) =>

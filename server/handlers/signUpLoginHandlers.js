@@ -17,22 +17,39 @@ const dbName = "CoffeeApp";
 const signUp = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
 
-  const { email, password } = req.body;
-  console.log(email, password);
+  const { email, firstPassword, password } = req.body;
+
+  let error = null;
+
   await client.connect();
 
   if (!!!email || !!!password) {
     res.status(400).json({ message: "Missing required fields" });
   }
 
+  if (password != firstPassword) {
+    res.status(400).json({ message: "passwords do not match" });
+  }
+
   const db = client.db(dbName);
   const dbUsers = db.collection("Users");
 
   try {
+    if (!email.toLowerCase().includes("@")) {
+      error = "invalid-email";
+    }
+
+    if (error) {
+      res.status(400).json({
+        status: "error",
+        error,
+      });
+    }
+
     const userFromDb = await dbUsers.findOne({ email });
 
     if (userFromDb) {
-      res.status(400).json({ error: "user already exists" });
+      res.status(400).json({ err: "user already exists" });
     }
 
     const hash = await bcrypt.hash(password, 8);
@@ -47,10 +64,12 @@ const signUp = async (req, res) => {
       if (err) {
         res.status(500).send({ error: err.message });
       }
-      res.status(201).json({ email: user.email, _id: user._id, token });
+      res
+        .status(201)
+        .json({ email: user.email, _id: user._id, token, status: "success" });
     });
-  } catch (error) {
-    res.status(500).json({ error });
+  } catch (err) {
+    res.status(500).json({ err });
   }
   client.close();
 };
