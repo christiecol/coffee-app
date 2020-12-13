@@ -7,7 +7,6 @@ export const HomePage = () => {
   return (
     <>
       <div>
-        <p>stuff about coffee and things </p>
         <HomePageItems />
       </div>
     </>

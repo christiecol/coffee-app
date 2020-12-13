@@ -101,5 +101,6 @@ const DropdownSelector = styled.div`
   width: 80vw;
   padding-top: 0.5rem;
 
-  background-color: ${COLORS.cultured};
+  color: white;
+  background-color: ${COLORS.darkTransparentTwo};
 `;

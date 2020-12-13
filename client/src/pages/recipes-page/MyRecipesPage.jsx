@@ -8,6 +8,7 @@ import { FetchRecipes } from "../../components/recipes/FetchRecipes";
 import { NewRecipeForm } from "../../components/recipes/form/NewRecipeForm";
 import { SearchBar } from "../../components/recipes/search-bar/SearchBar";
 import { RecipeButtons } from "../../components/recipes/single-recipe/RecipeButtons";
+import Beans from "../../images/nordwood-themes-ivP3TYdLvw0-unsplash.jpg";
 
 export const MyRecipesPage = () => {
   let recipes = useSelector(getRecipe);
@@ -40,7 +41,7 @@ export const MyRecipesPage = () => {
   });
 
   return (
-    <>
+    <Wrapper>
       <FetchRecipes />
       <SearchBar input={input} setInput={setInput} />
       <NewRecipeForm />
@@ -50,9 +51,15 @@ export const MyRecipesPage = () => {
           handleFavouritesClick={addFavouriteRecipe}
         />
       </SingleRecipeDiv>
-    </>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  background-image: url(${Beans});
+  background-size: contain;
+  overflow: hidden;
+`;
 
 const SingleRecipeDiv = styled.div`
   display: flex;

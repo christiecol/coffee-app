@@ -34,31 +34,12 @@ export const OriginsPage = () => {
   );
 };
 
-const ImgDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 20px;
-  margin-bottom: 1rem;
-
-  background: rgba(0, 0, 0, 0.5);
-`;
-
 const Grid = styled.div`
+  margin-top: 5rem;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-`;
-
-const Image = styled.img`
-  width: 70vw;
-  min-height: 9rem;
-  position: relative;
-  z-index: -10;
-
-  border-radius: 20px;
 `;
 
 const Card = styled.div`
@@ -71,15 +52,34 @@ const Card = styled.div`
   max-width: 100vw;
   position: relative;
   margin: 2rem 2rem;
-  padding: 1rem;
+  padding: 2rem 1rem;
   box-shadow: 0px 7px 30px 0px rgba(0, 0, 0, 0.3);
   /* text-decoration: none; */
   border-radius: 20px;
 `;
 
+const ImgDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+  margin-bottom: 1rem;
+
+  background: rgba(0, 0, 0, 0.5);
+`;
+
+const Image = styled.img`
+  width: 70vw;
+  min-height: 9rem;
+  position: relative;
+  z-index: -10;
+
+  border-radius: 20px;
+`;
+
 const Country = styled.h2`
   position: absolute;
-  z-index: 10;
   color: white;
   font-size: 10vw;
 `;

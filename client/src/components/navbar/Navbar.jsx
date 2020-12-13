@@ -20,8 +20,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   appBar: {
-    marginBottom: 10,
-    backgroundColor: `${COLORS.feldgrauLight}`,
+    backgroundColor: `${COLORS.blackCoffee}`,
     zIndex: 1000,
   },
 }));

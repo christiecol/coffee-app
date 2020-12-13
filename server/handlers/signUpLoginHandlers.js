@@ -19,8 +19,6 @@ const signUp = async (req, res) => {
 
   const { email, firstPassword, password } = req.body;
 
-  let error = null;
-
   await client.connect();
 
   if (!!!email || !!!password) {
@@ -31,21 +29,14 @@ const signUp = async (req, res) => {
     res.status(400).json({ message: "passwords do not match" });
   }
 
+  if (!email.toLowerCase().includes("@")) {
+    res.status(400).json({ message: "invalied email" });
+  }
+
   const db = client.db(dbName);
   const dbUsers = db.collection("Users");
 
   try {
-    if (!email.toLowerCase().includes("@")) {
-      error = "invalid-email";
-    }
-
-    if (error) {
-      res.status(400).json({
-        status: "error",
-        error,
-      });
-    }
-
     const userFromDb = await dbUsers.findOne({ email });
 
     if (userFromDb) {
@@ -60,14 +51,18 @@ const signUp = async (req, res) => {
 
     const [user] = savedDoc.ops;
 
-    jwt.sign({ _id: user._id }, secret, function (err, token) {
-      if (err) {
-        res.status(500).send({ error: err.message });
+    jwt.sign(
+      { _id: user._id, email: user.email },
+      secret,
+      function (err, token) {
+        if (err) {
+          res.status(500).send({ error: err.message });
+        }
+        res
+          .status(201)
+          .json({ email, _id: user._id, token, status: "success" });
       }
-      res
-        .status(201)
-        .json({ email: user.email, _id: user._id, token, status: "success" });
-    });
+    );
   } catch (err) {
     res.status(500).json({ err });
   }

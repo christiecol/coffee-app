@@ -19,7 +19,7 @@ export const RecipeComponent = ({ recipe }) => {
 
   return (
     <>
-      <IconContext.Provider value={{ size: "1.2rem" }}>
+      <IconContext.Provider value={{ size: "1.4rem" }}>
         <HeaderDiv>
           <div>
             <RecipeInfo>
@@ -89,7 +89,8 @@ const RecipeInfo = styled.div`
   width: 80vw;
   z-index: 10;
 
-  background-color: ${COLORS.cultured};
+  background-color: ${COLORS.darkTransparentTwo};
+  color: white;
 
   border-radius: 15px 15px 0 0;
   padding-top: 0.5rem;
@@ -113,7 +114,7 @@ const DropdownSelector = styled.div`
 `;
 
 const P = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 
   margin-left: 5px;
 `;

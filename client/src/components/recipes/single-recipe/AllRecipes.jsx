@@ -13,7 +13,7 @@ export const AllRecipes = ({ recipe }) => {
   console.log(recipe);
   return (
     <>
-      <IconContext.Provider value={{ size: "1rem", zIndex: "100" }}>
+      <IconContext.Provider value={{ size: "1.3rem", zIndex: "100" }}>
         <Wrapper>
           {/* date here */}
           <LeftDiv>
@@ -95,11 +95,10 @@ const Wrapper = styled.div`
   justify-content: center;
 
   width: 80vw;
-  background-color: ${COLORS.gainsboro};
+  background-color: ${COLORS.darkTransparentTwo};
   padding: 0 20px 10px;
 
   border-radius: 0 0 15px 15px;
-  /* box-shadow: 0px 5px 9px 0.5px #252525; */
 `;
 
 const LeftDiv = styled.div`
@@ -115,8 +114,10 @@ const ItemDiv = styled.div`
   margin-top: 1rem;
   border-radius: 5px;
   padding: 5px;
+  font-size: 1.3rem;
 
-  background-color: ${COLORS.cultured};
+  color: white;
+  background-color: ${COLORS.feldgrauDark};
 `;
 
 const RightDiv = styled(LeftDiv)`

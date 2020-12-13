@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
 import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -16,19 +16,24 @@ import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 
 import { COLORS } from "../../constants";
+import Logo from "../../images/logo.png";
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    flexGrow: 1,
-  },
   menuItem: {
-    width: "97vw",
+    margin: 0,
+    width: "98vw",
     textAlign: "center",
+    fontSize: "1.5rem",
     justifyContent: "center",
     padding: "2rem",
-    backgroundColor: `${COLORS.feldgrauLight}`,
+    backgroundColor: `${COLORS.blackCoffee}`,
     border: `1px solid ${COLORS.gainsboro}`,
     color: "white",
+    zIndex: "2000",
+
+    "&:active": {
+      backgroundColor: `${COLORS.desertSand}`,
+    },
   },
 }));
 
@@ -107,64 +112,56 @@ export const BurgerContent = () => {
               >
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
-                    style={{ zIndex: 100 }}
+                    style={{ zIndex: 100, padding: 0 }}
                     autoFocusItem={open}
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem
-                      className={classes.menuItem}
-                      onClick={handleClose}
-                    >
-                      Home
-                    </MenuItem>
-                    <MenuItem
-                      className={classes.menuItem}
-                      onClick={handleClose}
-                    >
-                      Origins
-                    </MenuItem>
-                    <MenuItem
-                      className={classes.menuItem}
-                      onClick={handleClose}
-                    >
-                      My Recipes
-                    </MenuItem>
+                    <NavLink to="/home">
+                      <MenuItem
+                        className={classes.menuItem}
+                        onClick={handleClose}
+                      >
+                        Home
+                      </MenuItem>
+                    </NavLink>
+
+                    <NavLink to="/origins">
+                      <MenuItem
+                        className={classes.menuItem}
+                        onClick={handleClose}
+                      >
+                        Origins
+                      </MenuItem>
+                    </NavLink>
+
+                    <NavLink to="/myrecipes">
+                      <MenuItem
+                        className={classes.menuItem}
+                        onClick={handleClose}
+                      >
+                        My Recipes
+                      </MenuItem>
+                    </NavLink>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
             </Grow>
           )}
         </Popper>
-        <Typography variant="h6" className={classes.title}>
-          News
-        </Typography>
+        <NavLinkHome to="/home">
+          <Img src={Logo} />
+        </NavLinkHome>
       </Toolbar>
     </>
   );
 };
 
-// const Wrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   position: relative;
-//   z-index: 1000;
-//   position: fixed;
-//   width: 100%;
-//   text-align: center;
-// `;
+const NavLinkHome = styled(NavLink)`
+  margin-left: 2rem;
+`;
 
-// const Item = styled(NavLink)`
-//   color: white;
-//   text-decoration: none;
-//   padding: 2rem 0;
-//   background-color: ${COLORS.feldgrauLight};
-//   border: 1px solid ${COLORS.gainsboro};
-
-//   font-style: bold;
-//   font-size: 1.3rem;
-
-//   &:hover {
-//     background-color: ${COLORS.feldgrauDark};
-//   }
-// `;
+const Img = styled.img`
+  max-height: 3.5rem;
+  max-width: 3.5rem;
+`;

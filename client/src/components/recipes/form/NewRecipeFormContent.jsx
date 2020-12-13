@@ -203,7 +203,7 @@ const Form = styled.form`
   padding: 2rem 0;
   border-radius: 5px;
   width: 80%;
-  background-color: ${COLORS.feldgrauLight};
+  background-color: ${COLORS.darkTransparentTwo};
   color: white;
   overflow: hidden;
   box-shadow: 0px 0px 9px 1px #252525;

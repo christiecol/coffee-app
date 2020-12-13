@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// import Portafilter from "../assets/portafilter.jpg";
-// import Chemex from "../assets/mike-marquez-2anddAkcE24-unsplash.jpg";
-// import Banner from "assets/tyler-nix-6sfy2ENBODc-unsplash.jpg";
 import { COLORS } from "../../constants";
 import items from "../../data/items.json";
 import { SingleHomePageItem } from "./SingleHomePageItem";

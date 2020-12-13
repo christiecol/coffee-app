@@ -11,6 +11,13 @@ import { Mui } from "./components/Mui";
 import { LogInPage } from "./pages/log-in/LoginPage";
 
 function App() {
+  const MainLayout = ({ children }) => (
+    <>
+      <Navbar />
+      {children}
+    </>
+  );
+
   return (
     <>
       <Router>
@@ -22,16 +29,21 @@ function App() {
           </Route>
 
           <Route exact path="/home">
-            <Navbar />
-            <HomePage />
+            <MainLayout>
+              <HomePage />
+            </MainLayout>
           </Route>
 
           <Route exact path="/origins">
-            <OriginsPage />
+            <MainLayout>
+              <OriginsPage />
+            </MainLayout>
           </Route>
 
           <Route exact path="/myrecipes">
-            <MyRecipesPage />
+            <MainLayout>
+              <MyRecipesPage />
+            </MainLayout>
           </Route>
         </Switch>
       </Router>

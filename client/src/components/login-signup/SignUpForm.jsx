@@ -107,7 +107,7 @@ export const SignUpForm = () => {
   };
 
   const body = (
-    <Paper tabindex="-1" style={modalStyle} className={classes.paper}>
+    <Paper style={modalStyle} className={classes.paper}>
       <IconContext.Provider value={{ size: "1.5rem" }}>
         <form onSubmit={handleSignUp} autoComplete="off">
           <EmailPassword>
@@ -170,7 +170,7 @@ export const SignUpForm = () => {
   return (
     <div>
       <Button type="button" onClick={handleOpen}>
-        Sign up
+        Sign Up
       </Button>
       <Modal
         open={open}
@@ -181,7 +181,9 @@ export const SignUpForm = () => {
           timeout: 600,
         }}
       >
-        <Fade in={open}>{subStatus !== "success" && body}</Fade>
+        {/* <Fade in={open}> */}
+        {subStatus !== "success" && body}
+        {/* </Fade> */}
       </Modal>
     </div>
   );

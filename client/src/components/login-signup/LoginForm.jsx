@@ -6,12 +6,15 @@ import { useHistory } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FiKey } from "react-icons/fi";
 import { AiOutlineMail } from "react-icons/ai";
+import { BsBoxArrowInRight } from "react-icons/bs";
+
+import { requirePropFactory } from "@material-ui/core";
 
 import { COLORS } from "../../constants";
 import { SignUpForm } from "./SignUpForm";
 import { responseUser } from "../../redux/actions/actions";
-import { requirePropFactory } from "@material-ui/core";
 
+import Logo from "../../images/logoFull.png";
 import Coffee from "../../images/nathan-dumlao-zUNs99PGDg0-unsplash.jpg";
 
 export const LoginForm = () => {
@@ -63,6 +66,10 @@ export const LoginForm = () => {
   return (
     <Wrapper>
       <WrapperOverlay>
+        <ImgDiv>
+          <img src={Logo} />
+        </ImgDiv>
+
         <IconContext.Provider value={{ size: "1.5rem" }}>
           <form onSubmit={handleLogin}>
             <EmailPassword>
@@ -94,12 +101,18 @@ export const LoginForm = () => {
                   aria-required="true"
                 />
               </InputDivPass>
-              <Button type="submit">Login</Button>
+              <Button type="submit">Sign In</Button>
+            </EmailPassword>
+
+            <SignIn>
               <H2>Don't have an account?</H2>
               <SignUpForm />
-              <H2>Or</H2>
-              <A href="/home">Continue as a guest</A>
-            </EmailPassword>
+              <H1>Or</H1>
+              <A href="/home">
+                Continue as a guest
+                <BsBoxArrowInRight style={{ marginLeft: 7 }} />
+              </A>
+            </SignIn>
           </form>
         </IconContext.Provider>
       </WrapperOverlay>
@@ -107,10 +120,12 @@ export const LoginForm = () => {
   );
 };
 
+const ImgDiv = styled.div`
+  margin-top: 2rem;
+`;
+
 const Wrapper = styled.div`
-  height: 100vh;
   background-image: url(${Coffee});
-  /* background-attachment: fixed; */
   background-size: cover;
   overflow: hidden;
 `;
@@ -120,8 +135,6 @@ const WrapperOverlay = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  height: 100vh;
 
   color: white;
   background-color: rgba(0, 0, 0, 0.36);
@@ -134,9 +147,15 @@ const EmailPassword = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
 
-  padding: 2rem 0;
+  padding: 1rem 0 2rem 0;
 
   width: 70vw;
+
+  background-color: rgba(0, 0, 0, 0.2);
+`;
+
+const SignIn = styled(EmailPassword)`
+  margin-top: 1rem;
 `;
 
 const InputDivEmail = styled.div`
@@ -186,10 +205,16 @@ const Input = styled.input`
   }
 `;
 
-const H2 = styled.h2`
-  font-size: 1.2rem;
+const H2 = styled.h3`
+  font-size: 1.3rem;
 
   margin: 1rem 0;
+`;
+
+const H1 = styled.h1`
+  font-size: 1.5rem;
+
+  margin-bottom: 1rem;
 `;
 
 const Button = styled.button`
@@ -202,7 +227,7 @@ const Button = styled.button`
 
   padding: 10px 0;
   width: 50vw;
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
   border-radius: 20px;
 
   border: 2px solid white;
@@ -219,6 +244,9 @@ const Button = styled.button`
 const A = styled.a`
   all: unset;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
 
   font-size: 1.4rem;
   color: ${COLORS.desertSand};
