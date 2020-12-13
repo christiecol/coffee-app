@@ -47,7 +47,7 @@ export const RecipeFavouriteButton = ({ recipe }) => {
           throw res.error;
         }
         setRecipeId(recipe._id);
-
+        // setCurrentUserEmail(getUser);
         return {
           recipeId,
           email: currentUserEmail,

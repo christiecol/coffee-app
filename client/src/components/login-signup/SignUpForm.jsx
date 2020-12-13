@@ -9,12 +9,12 @@ import { AiOutlineMail } from "react-icons/ai";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
 
 import { COLORS } from "../../constants";
 import { responseUser } from "../../redux/actions/actions";
-
-import { initialFormState, errorMessages } from "../../util";
-import ErrorMsg from "../ErrorMsg";
+import { Paper } from "@material-ui/core";
 
 function getModalStyle() {
   const top = 50;
@@ -34,7 +34,6 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
-    // width: "60%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -57,10 +56,8 @@ export const SignUpForm = () => {
   const [password, setPassword] = useState("");
   //form validation
   const [subStatus, setSubStatus] = useState("idle");
-  // const [formData, setFormData] = useState(initialFormState);
-  // const [errMessage, setErrMessage] = useState("");
-  // const [disabled, setDisabled] = useState(true);
 
+  //modal state
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
 
@@ -85,18 +82,14 @@ export const SignUpForm = () => {
       body: JSON.stringify({ email, firstPassword, password }),
     })
       .then((res) => {
-        return { status: res.status, ...res.json() };
+        console.log(res);
+        return { email: email, status: res.status, ...res.json() };
       })
       .then((res) => {
-        console.log(res);
-
-        // let { error } = res;
-        console.log(res);
-        // console.log(error);
         if (res.status === 201) {
-          dispatch(responseUser(res));
-          history.push("/home");
+          dispatch(responseUser(email));
           setSubStatus("success");
+          history.push("/home");
         }
       })
       .catch((err) => {
@@ -114,11 +107,11 @@ export const SignUpForm = () => {
   };
 
   const body = (
-    <div style={modalStyle} className={classes.paper}>
-      {/* <Wrapper> */}
+    <Paper tabindex="-1" style={modalStyle} className={classes.paper}>
       <IconContext.Provider value={{ size: "1.5rem" }}>
         <form onSubmit={handleSignUp} autoComplete="off">
           <EmailPassword>
+            <H2>Please enter your email and a secure password</H2>
             <InputDivEmail>
               <Icon>
                 <AiOutlineMail />
@@ -141,7 +134,7 @@ export const SignUpForm = () => {
                 value={firstPassword}
                 onChange={(ev) => setFirstPassword(ev.target.value)}
                 type="password"
-                placeholder="password"
+                placeholder="Password"
                 required="required"
                 aria-required="true"
               />
@@ -168,12 +161,10 @@ export const SignUpForm = () => {
             <p>
               <em>We won't share your personal information with anyone</em>
             </p>
-            {subStatus === "error" && <ErrorMsg>meow</ErrorMsg>}
           </EmailPassword>
         </form>
       </IconContext.Provider>
-      {/* </Wrapper> */}
-    </div>
+    </Paper>
   );
 
   return (
@@ -181,16 +172,20 @@ export const SignUpForm = () => {
       <Button type="button" onClick={handleOpen}>
         Sign up
       </Button>
-      <Modal open={open} onClose={handleClose}>
-        {subStatus !== "success" && body}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 600,
+        }}
+      >
+        <Fade in={open}>{subStatus !== "success" && body}</Fade>
       </Modal>
     </div>
   );
 };
-// const Wrapper = styled.div`
-//   background: rgba(0, 0, 0, 0.36);
-// `;
-
 const EmailPassword = styled.div`
   display: flex;
   justify-content: center;
@@ -203,6 +198,12 @@ const EmailPassword = styled.div`
 
   width: 70vw;
   color: white;
+`;
+
+const H2 = styled.h2`
+  font-size: 1.2rem;
+
+  margin: 1rem 0;
 `;
 
 const InputDivEmail = styled.div`

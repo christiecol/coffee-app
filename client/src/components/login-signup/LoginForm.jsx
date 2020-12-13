@@ -75,7 +75,7 @@ export const LoginForm = () => {
                   value={email}
                   onChange={(ev) => setEmail(ev.target.value)}
                   type="email"
-                  placeholder="email"
+                  placeholder="Email"
                   required="required"
                   pattern=".+@.+.."
                   aria-required="true"
@@ -89,7 +89,7 @@ export const LoginForm = () => {
                   value={password}
                   onChange={(ev) => setPassword(ev.target.value)}
                   type="password"
-                  placeholder="password"
+                  placeholder="Password"
                   required="required"
                   aria-required="true"
                 />
