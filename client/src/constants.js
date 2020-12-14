@@ -8,4 +8,5 @@ export const COLORS = {
   culturedDark: "#D2D6DB",
   desertSand: "#D8BFAA",
   blackCoffee: "#2D2523",
+  overlay: "rgba(0, 0, 0, 0.36)",
 };

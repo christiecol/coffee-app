@@ -1,8 +1,10 @@
 //users
-export const responseUser = (email) => {
+export const responseUser = (email, favourites, token) => {
   return {
     type: "RESPONSE_USER",
     email,
+    favourites,
+    token,
   };
 };
 
@@ -49,6 +51,7 @@ export const responseRecipeError = (error) => {
 };
 
 export const addToFavourites = (recipe) => {
+  console.log(recipe);
   return {
     type: "ADD_TO_FAVOURITES",
     recipe,
@@ -56,6 +59,8 @@ export const addToFavourites = (recipe) => {
 };
 
 export const removeFromFavourites = (recipe) => {
+  console.log(recipe);
+
   return {
     type: "REMOVE_FROM_FAVOURITES",
     recipe,

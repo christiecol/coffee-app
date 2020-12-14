@@ -47,8 +47,6 @@ const signUp = async (req, res) => {
 
     const savedDoc = await dbUsers.insertOne({ email, password: hash });
 
-    console.log(savedDoc);
-
     const [user] = savedDoc.ops;
 
     jwt.sign(
@@ -73,7 +71,7 @@ const logIn = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
 
   const { email, password } = req.body;
-  console.log(email, password);
+  console.log("emailpass", email, password);
   await client.connect();
 
   if (!!!email || !!!password) {
@@ -97,12 +95,15 @@ const logIn = async (req, res) => {
       if (err) {
         res.status(500).send({ error: err.message });
       }
-      res
-        .status(200)
-        .json({ email: userFromDb.email, _id: userFromDb._id, token });
+      res.status(200).json({
+        favourites: userFromDb.favourite,
+        email: userFromDb.email,
+        _id: userFromDb._id,
+        token,
+      });
     });
 
-    console.log(passwordCheck);
+    console.log("passcheck", passwordCheck);
   } catch (error) {
     res.status(500).json({ error });
   }
@@ -113,19 +114,32 @@ const addFavourite = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
 
   const { email, recipeId } = req.body;
-
+  console.log("email recipe addFavourite", email, recipeId);
   await client.connect();
 
   const db = client.db(dbName);
   const dbUsers = db.collection("Users");
 
   try {
-    const query = { id: email };
-    const newValue = { $push: { favourite: recipeId } };
+    const query = { email: email };
+    const addValue = { $push: { favourite: recipeId } };
+    const removeValue = { $pull: { favourite: recipeId } };
 
-    await dbUsers.updateOne(query, newValue);
+    const existingFavourite = await dbUsers
+      .find({ email: email, favourite: { $in: [recipeId] } })
+      .count();
 
-    res.status(200).json({ status: 200 });
+    let actionType = null;
+
+    if (existingFavourite) {
+      await dbUsers.updateOne(query, removeValue);
+      actionType = "REMOVE_FROM_FAVOURITES";
+    } else {
+      await dbUsers.updateOne(query, addValue);
+      actionType = "ADD_TO_FAVOURITES";
+    }
+
+    res.status(200).json({ status: 200, actionType });
   } catch (error) {
     res.status(500).json({ error });
   }

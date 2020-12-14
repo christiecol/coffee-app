@@ -59,6 +59,7 @@ const Wrapper = styled.div`
   background-image: url(${Beans});
   background-size: contain;
   overflow: hidden;
+  z-index: -1000;
 `;
 
 const SingleRecipeDiv = styled.div`

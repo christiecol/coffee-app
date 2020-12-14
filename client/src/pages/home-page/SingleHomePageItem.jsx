@@ -21,6 +21,8 @@ const ItemDiv = styled.div`
 const Img = styled.img`
   max-width: 100vw;
   overflow: hidden;
+
+  position: relative;
 `;
 
 const ParaWrapper = styled.div`

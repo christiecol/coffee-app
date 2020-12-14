@@ -47,20 +47,18 @@ export const LoginForm = () => {
         if (res.error) {
           throw res.error;
         }
-
-        return { email: email, status: res.status, ...res.json() };
+        if (res.status !== 200) {
+          throw new Error("Backend error");
+        }
+        return res.json();
       })
       .then((res) => {
-        if (res.status === 200) {
-          dispatch(responseUser(email));
-          history.push("/home");
-        }
+        console.log(res);
+        const { email, favourites, token } = res;
+        dispatch(responseUser(email, favourites, token));
+        history.push("/home");
       })
       .catch((err) => err.message);
-  };
-
-  const goToHome = () => {
-    history.push("/home");
   };
 
   return (

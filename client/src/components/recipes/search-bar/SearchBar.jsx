@@ -12,10 +12,11 @@ import { COLORS } from "../../../constants";
 const useStyles = makeStyles(() => ({
   searchContainer: {
     display: "flex",
-    // backgroundColor: fade("#77b45f", 0.15),
+    backgroundColor: fade(`${COLORS.cultured}`, 0.3),
     paddingRight: 5,
     paddingLeft: 5,
-    borderRadius: 7,
+    borderRadius: 10,
+    marginTop: "1rem",
   },
   searchIcon: {
     alignSelf: "flex-end",
