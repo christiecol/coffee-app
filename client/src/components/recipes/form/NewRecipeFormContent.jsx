@@ -9,6 +9,7 @@ import { GiMokaPot, GiCoffeeBeans } from "react-icons/gi";
 import { IoWaterOutline, IoTimerOutline } from "react-icons/io5";
 import { VscNote } from "react-icons/vsc";
 import { MdComment } from "react-icons/md";
+import {GoPrimitiveDot} from "react-icons/go"
 
 import { COLORS } from "../../../constants";
 import { responseRecipe } from "../../../redux/actions/actions";
@@ -18,6 +19,7 @@ export const NewRecipeFormContent = () => {
   const [roaster, setRoaster] = useState("");
   const [name, setName] = useState("");
   const [brewMethod, setBrewMethod] = useState("");
+  const [grams, setGrams] = useState("");
   const [grindSize, setGrindSize] = useState("");
   const [water, setWater] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -34,6 +36,7 @@ export const NewRecipeFormContent = () => {
         roaster,
         name,
         brewMethod,
+        grams,
         grindSize,
         water,
         minutes,
@@ -54,7 +57,7 @@ export const NewRecipeFormContent = () => {
     <>
       <IconContext.Provider value={{ size: "2rem" }}>
         <Form onSubmit={handleSubmit}>
-          <Title>What Am I Drinking Today?</Title>
+          <Title>What Are You Brewing Today?</Title>
 
           <IconInput>
             <Icon>
@@ -115,6 +118,19 @@ export const NewRecipeFormContent = () => {
           <IconInput>
             <Icon>
               <GiCoffeeBeans />
+            </Icon>
+            <Input
+              value={grams}
+              type="text"
+              placeholder="Grams of coffee"
+              onChange={(ev) => setGrams(ev.target.value)}
+            />
+          </IconInput>
+
+
+          <IconInput>
+            <Icon>
+              <GoPrimitiveDot />
             </Icon>
             <Input
               value={grindSize}

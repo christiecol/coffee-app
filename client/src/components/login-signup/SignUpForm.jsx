@@ -200,6 +200,7 @@ const EmailPassword = styled.div`
 
   width: 70vw;
   color: white;
+  
 `;
 
 const H2 = styled.h2`

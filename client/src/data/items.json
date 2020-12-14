@@ -8,12 +8,15 @@
   },
   {
     "img": "portafilter.jpg",
-    "title": "More Text",
-    "description": "Culpa Lorem ut veniam irure magna nisi cupidatat Lorem cupidatat culpa ea velit."
+    "title": "Origins",
+    "description": "Every coffee you drink has a long process to go through before ending up in your cup. It's been grown on a farm by people who have, in many cases, been farming for generations. It takes an average of four years for a tree to produce its first crop and from there its fruit is taken through the washing/drying process before being shipped off to be roasted.",
+    "link": "Want to know more about specific origins?"
   },
   {
     "img": "chemex.jpg",
-    "title": "More More Text",
-    "description": "Amet ullamco cillum exercitation ullamco duis laboris Lorem."
+    "title": "Brew Methods",
+    "description": "Find the right brew method for your coffee and personal taste.",
+    "linkBrew": "Browse all brew methods"
+
   }
 ]

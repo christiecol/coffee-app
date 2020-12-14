@@ -1,8 +1,9 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
 
-export const SingleHomePageItem = ({ item: { img, title, subTitle, description, href } }) => {
+export const SingleHomePageItem = ({ item: { img, title, subTitle, description, link, linkBrew, href } }) => {
   return (
     <ItemDiv>
       <Img src={img} />
@@ -10,6 +11,9 @@ export const SingleHomePageItem = ({ item: { img, title, subTitle, description, 
         <Title>{title}</Title>
         <SubTitle>{subTitle}</SubTitle>
         <Description><Href href="https://www.cafekujira.com/">{href}</Href>{description}</Description>
+        {link && <Link to="/origins">{link}</Link>}
+        {linkBrew && <Link to="/brewmethods">{linkBrew}</Link>}
+        
       </ParaWrapper>
     </ItemDiv>
   );
@@ -70,4 +74,23 @@ const Description = styled.p`
 
 const Href = styled.a`
 text-decoration: none;
+`
+
+const Link = styled(NavLink)`
+all: unset;
+
+padding: 15px;
+margin-top: 1rem;
+
+font-weight: 600;
+font-size: 1.3rem;
+letter-spacing: 3px;
+
+border: 1px solid ${COLORS.feldgrauDarkTransparent};
+color: ${COLORS.feldgrauDark};
+
+&:hover {
+    color: ${COLORS.desertSand};
+    border: 1px solid ${COLORS.desertSand};
+  }
 `

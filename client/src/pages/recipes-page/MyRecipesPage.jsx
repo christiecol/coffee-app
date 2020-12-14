@@ -60,6 +60,8 @@ const Wrapper = styled.div`
   background-size: contain;
   overflow: hidden;
   z-index: -1000;
+
+  min-height: 100vh;
 `;
 
 const SingleRecipeDiv = styled.div`

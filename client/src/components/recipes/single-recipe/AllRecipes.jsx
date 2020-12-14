@@ -6,6 +6,8 @@ import { GiMokaPot, GiCoffeeBeans } from "react-icons/gi";
 import { IoWaterOutline, IoTimerOutline } from "react-icons/io5";
 import { VscNote } from "react-icons/vsc";
 import { MdComment } from "react-icons/md";
+import {GoPrimitiveDot} from "react-icons/go"
+
 import { COLORS } from "../../../constants";
 import { DeleteActionButton } from "./DeleteActionButton";
 
@@ -24,9 +26,16 @@ export const AllRecipes = ({ recipe }) => {
               </ItemDiv>
             )}
 
-            {recipe.grindSize && (
+            {recipe.grams && (
               <ItemDiv>
                 <GiCoffeeBeans />
+                <P>{recipe.grams}g</P>
+              </ItemDiv>
+            )}
+
+            {recipe.grindSize && (
+              <ItemDiv>
+                <GoPrimitiveDot />
                 <P>{recipe.grindSize}</P>
               </ItemDiv>
             )}
@@ -34,7 +43,7 @@ export const AllRecipes = ({ recipe }) => {
             {recipe.water && (
               <ItemDiv>
                 <IoWaterOutline />
-                <P>200</P>
+                <P>{recipe.water}</P>
               </ItemDiv>
             )}
 

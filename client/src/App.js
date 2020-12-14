@@ -8,6 +8,7 @@ import { Navbar } from "./components/navbar/Navbar";
 import { OriginsPage } from "./pages/origins-page/OriginsPage";
 import { MyRecipesPage } from "./pages/recipes-page/MyRecipesPage";
 import { LogInPage } from "./pages/log-in/LoginPage";
+import { BrewMethodsPage } from "./pages/brew-methods/BrewMethodsPage";
 
 function App() {
   const MainLayout = ({ children }) => (
@@ -38,6 +39,13 @@ function App() {
               <OriginsPage />
             </MainLayout>
           </Route>
+
+          <Route exact path="/brewmethods">
+            <MainLayout>
+              <BrewMethodsPage />
+            </MainLayout>
+          </Route>
+
 
           <Route exact path="/myrecipes">
             <MainLayout>

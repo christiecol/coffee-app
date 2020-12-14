@@ -135,6 +135,16 @@ export const BurgerContent = () => {
                       </MenuItem>
                     </Nav>
 
+                    <Nav to="/brewmethods">
+                      <MenuItem
+                        className={classes.menuItem}
+                        onClick={handleClose}
+                      >
+                        Brew Methods
+                      </MenuItem>
+                    </Nav>
+
+
                     <Nav to="/myrecipes">
                       <MenuItem
                         className={classes.menuItem}

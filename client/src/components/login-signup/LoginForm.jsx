@@ -154,6 +154,8 @@ const EmailPassword = styled.div`
 
 const SignIn = styled(EmailPassword)`
   margin-top: 1rem;
+
+  margin-bottom: 2rem;
 `;
 
 const InputDivEmail = styled.div`

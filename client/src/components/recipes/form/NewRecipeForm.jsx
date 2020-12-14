@@ -14,7 +14,12 @@ export const NewRecipeForm = () => {
   return (
     <>
       <FormDiv>
-        <Button onClick={() => handleToggle()}>+ Create A New Recipe</Button>
+        {!toggle ? (
+          <Button onClick={() => handleToggle()}>+ Create A New Recipe</Button>
+        ) : (
+          <Button onClick={() => handleToggle()}>- Create A New Recipe</Button>
+        )}
+
         {toggle ? <NewRecipeFormContent /> : null}
       </FormDiv>
     </>

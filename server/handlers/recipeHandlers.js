@@ -52,6 +52,7 @@ const createOneRecipe = async (req, res) => {
     roaster,
     name,
     brewMethod,
+    grams,
     grindSize,
     gramsOfWater,
     minutes,
