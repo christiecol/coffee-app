@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.5rem",
     justifyContent: "center",
     padding: "2rem",
-    backgroundColor: `${COLORS.blackCoffee}`,
+    backgroundColor: `${COLORS.feldgrauDark}`,
     border: `1px solid ${COLORS.gainsboro}`,
     color: "white",
     zIndex: "2000",
@@ -117,32 +117,32 @@ export const BurgerContent = () => {
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
-                    <NavLink to="/home">
+                    <Nav to="/home">
                       <MenuItem
                         className={classes.menuItem}
                         onClick={handleClose}
                       >
                         Home
                       </MenuItem>
-                    </NavLink>
+                    </Nav>
 
-                    <NavLink to="/origins">
+                    <Nav to="/origins">
                       <MenuItem
                         className={classes.menuItem}
                         onClick={handleClose}
                       >
                         Origins
                       </MenuItem>
-                    </NavLink>
+                    </Nav>
 
-                    <NavLink to="/myrecipes">
+                    <Nav to="/myrecipes">
                       <MenuItem
                         className={classes.menuItem}
                         onClick={handleClose}
                       >
                         My Recipes
                       </MenuItem>
-                    </NavLink>
+                    </Nav>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -157,8 +157,12 @@ export const BurgerContent = () => {
   );
 };
 
+const Nav = styled(NavLink)`
+all: unset;
+`
+
 const NavLinkHome = styled(NavLink)`
-  margin-left: 2rem;
+  margin-left: 1rem;
 `;
 
 const Img = styled.img`

@@ -50,19 +50,21 @@ export const responseRecipeError = (error) => {
   };
 };
 
-export const addToFavourites = (recipe) => {
+export const addToFavourites = (recipe, favourites) => {
   console.log(recipe);
   return {
     type: "ADD_TO_FAVOURITES",
     recipe,
+    favourites,
   };
 };
 
-export const removeFromFavourites = (recipe) => {
+export const removeFromFavourites = (recipe, favourites) => {
   console.log(recipe);
 
   return {
     type: "REMOVE_FROM_FAVOURITES",
     recipe,
+    favourites,
   };
 };

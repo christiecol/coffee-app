@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 import { COLORS } from "../../constants";
 import items from "../../data/items.json";
@@ -31,7 +32,8 @@ export const HomePageItems = () => {
         </BannerOverlay>
       </BannerImgAndText>
       <RecipeLinkDiv>
-        <p>meow</p>
+        <Bio>Add some inspiration to your day with Catimor. Infuse your morning with the scent of freshly made coffee, brewed to perfection.</Bio>
+        <NavLinkRecipes to="/myrecipes">Start brewing now {">"}</NavLinkRecipes>
       </RecipeLinkDiv>
 
       {items.map((item) => {
@@ -100,9 +102,9 @@ const BottomText = styled.div`
   margin-left: 1rem;
 
   font-size: 1.8rem;
-  line-height: 1.7rem;
+  line-height: 2rem;
   letter-spacing: 4px;
-  font-weight: 800;
+  font-weight: 600;
 
   padding: 1rem;
   color: white;
@@ -111,4 +113,33 @@ const BottomText = styled.div`
   background-color: ${COLORS.darkTransparentTwo};
 `;
 
-const RecipeLinkDiv = styled.div``;
+const RecipeLinkDiv = styled.div`
+text-align: center;
+
+padding: 3rem 0;
+padding-bottom: 4rem;
+background-color: ${COLORS.cultured};
+
+`;
+
+const Bio = styled.p`  font-size: 1.8rem;
+line-height: 4rem;
+letter-spacing: 3px;
+font-weight: 300;
+margin: 0 1.5rem 2rem 1.5rem;
+
+color: ${COLORS.feldgrauDarkTransparent}
+`
+
+const NavLinkRecipes = styled(NavLink)`
+all: unset;
+
+padding: 15px;
+
+font-weight: 600;
+font-size: 1.3rem;
+letter-spacing: 3px;
+
+border: 1px solid ${COLORS.feldgrauDarkTransparent};
+color: ${COLORS.feldgrauDark}
+`

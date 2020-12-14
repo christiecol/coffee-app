@@ -7,6 +7,7 @@ export default function UsersReducer(state = initialState, action) {
 
   switch (action.type) {
     case "RESPONSE_USER": {
+      console.log(action)
       return {
         ...state,
         user: action.email,

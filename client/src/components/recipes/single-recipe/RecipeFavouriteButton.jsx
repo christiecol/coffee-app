@@ -17,20 +17,19 @@ import { getUser } from "../../../redux/reducers/UsersReducer";
 export const RecipeFavouriteButton = ({ recipe }) => {
   const [toggle, setToggle] = useState(false);
   // const [currentUserEmail, setCurrentUserEmail] = useState("");
-  const [recipeId, setRecipeId] = useState("");
+  // const [recipeId, setRecipeId] = useState("");
 
   const currentUserEmail = useSelector(getUser);
-  const favorites = useSelector((state) => {
-    return state?.user?.favorites;
+  const favourites = useSelector((state) => {
+    return state?.users?.favourites;
   });
-  console.log(favorites);
+  console.log(favourites);
   console.log("currentemail", currentUserEmail);
   const dispatch = useDispatch();
-  const colored = favorites?.includes(recipe._id);
+  const colored = favourites?.includes(recipe._id);
 
   const handleFavouriteRecipe = () => {
     setToggle(!toggle);
-    console.log(currentUserEmail, recipeId);
 
     fetch("/addfavourite", {
       method: "POST",
@@ -57,7 +56,7 @@ export const RecipeFavouriteButton = ({ recipe }) => {
         }
       });
   };
-  console.log(recipeId);
+  // console.log(recipeId);
   return (
     <>
       <IconContext.Provider value={{ size: "1.7rem" }}>
@@ -65,7 +64,7 @@ export const RecipeFavouriteButton = ({ recipe }) => {
           <div>
             <DropdownSelector>
               <IconButton
-                value={(currentUserEmail, recipeId)}
+                value={(currentUserEmail, recipe._id)}
                 onClick={() => {
                   handleFavouriteRecipe();
                 }}

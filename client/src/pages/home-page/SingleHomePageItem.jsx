@@ -2,20 +2,20 @@ import React from "react";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
 
-export const SingleHomePageItem = ({ item: { img, title, description } }) => {
+export const SingleHomePageItem = ({ item: { img, title, subTitle, description, href } }) => {
   return (
     <ItemDiv>
       <Img src={img} />
       <ParaWrapper>
         <Title>{title}</Title>
-        <Description>{description}</Description>
+        <SubTitle>{subTitle}</SubTitle>
+        <Description><Href href="https://www.cafekujira.com/">{href}</Href>{description}</Description>
       </ParaWrapper>
     </ItemDiv>
   );
 };
 
 const ItemDiv = styled.div`
-  margin-top: 1rem;
 `;
 
 const Img = styled.img`
@@ -34,14 +34,14 @@ const ParaWrapper = styled.div`
   box-shadow: 0px 0px 12px 0.5px rgba(0, 0, 0, 0.2);
 
   text-align: center;
-  margin: 3rem 1rem;
-  padding: 1rem;
+  margin: 1rem 1rem 3rem 1rem;
+  padding: 2.5rem 1rem;
 
   background-color: ${COLORS.cultured};
 `;
 
 const Title = styled.h1`
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 
   // border bottom
   &::after {
@@ -54,6 +54,20 @@ const Title = styled.h1`
   }
 `;
 
+const SubTitle = styled.h2`
+  font-size: 1.4rem;
+
+margin: 1rem 0;
+`
+
 const Description = styled.p`
+  font-size: 1.2rem;
+
   padding-top: 0.5rem;
+
+  line-height: 1.9rem;
 `;
+
+const Href = styled.a`
+text-decoration: none;
+`

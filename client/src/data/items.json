@@ -1,8 +1,10 @@
 [
   {
     "img": "roaster.jpg",
-    "title": "Some Text",
-    "description": "Laboris ullamco exercitation ad ea enim ipsum duis Lorem magna duis reprehenderit deserunt ut."
+    "title": "Featured Roaster",
+    "subTitle": "Café Kujira",
+    "href": "Kujira",
+    "description": " is a local Montreal roaster renowned for their small-batch roasting. Their beans are sourced from reputable farmers across the world and roasted with care."
   },
   {
     "img": "portafilter.jpg",
