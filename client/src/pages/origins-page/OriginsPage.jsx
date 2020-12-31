@@ -40,6 +40,8 @@ const Grid = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  z-index: -100;
 `;
 
 const Card = styled.div`
@@ -63,6 +65,8 @@ const ImgDiv = styled.div`
   align-items: center;
   justify-content: center;
 
+  max-height: 12rem;
+  overflow: hidden;
   border-radius: 20px;
   margin-bottom: 1rem;
 
@@ -73,7 +77,7 @@ const Image = styled.img`
   width: 70vw;
   min-height: 9rem;
   position: relative;
-  z-index: -10;
+  z-index: -20;
 
   border-radius: 20px;
 `;

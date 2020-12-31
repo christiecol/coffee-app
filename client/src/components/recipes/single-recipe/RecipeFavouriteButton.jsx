@@ -16,8 +16,6 @@ import { getUser } from "../../../redux/reducers/UsersReducer";
 
 export const RecipeFavouriteButton = ({ recipe }) => {
   const [toggle, setToggle] = useState(false);
-  // const [currentUserEmail, setCurrentUserEmail] = useState("");
-  // const [recipeId, setRecipeId] = useState("");
 
   const currentUserEmail = useSelector(getUser);
   const favourites = useSelector((state) => {
@@ -86,6 +84,12 @@ const HeaderDiv = styled.div`
 `;
 const IconButton = styled.button`
   all: unset;
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
 `;
 
 const DropdownSelector = styled.div`
@@ -100,4 +104,10 @@ const DropdownSelector = styled.div`
 
   color: white;
   background-color: ${COLORS.darkTransparentTwo};
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
 `;

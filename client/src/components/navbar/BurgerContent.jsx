@@ -34,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
     "&:active": {
       backgroundColor: `${COLORS.desertSand}`,
     },
+
+    "&:focus": {
+      boxShadow: "0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9",
+      outline: "2px dotted transparent",
+      outlineOffset: "2px",
+    },
   },
 }));
 
@@ -112,13 +118,15 @@ export const BurgerContent = () => {
               >
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
-                    style={{ zIndex: 100, padding: 0 }}
+                    tabIndex="-1"
+                    style={{ zIndex: 1000, padding: 0 }}
                     autoFocusItem={open}
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
                     <Nav to="/home">
                       <MenuItem
+                        style={{ zIndex: 100 }}
                         className={classes.menuItem}
                         onClick={handleClose}
                       >
@@ -137,13 +145,13 @@ export const BurgerContent = () => {
 
                     <Nav to="/brewmethods">
                       <MenuItem
+                        style={{ zIndex: 100 }}
                         className={classes.menuItem}
                         onClick={handleClose}
                       >
                         Brew Methods
                       </MenuItem>
                     </Nav>
-
 
                     <Nav to="/myrecipes">
                       <MenuItem
@@ -168,11 +176,19 @@ export const BurgerContent = () => {
 };
 
 const Nav = styled(NavLink)`
-all: unset;
-`
+  all: unset;
+
+  z-index: 1000;
+`;
 
 const NavLinkHome = styled(NavLink)`
   margin-left: 1rem;
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
 `;
 
 const Img = styled.img`

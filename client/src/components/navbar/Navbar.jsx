@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -6,7 +6,6 @@ import AppBar from "@material-ui/core/AppBar";
 import { BurgerContent } from "./BurgerContent";
 import { useViewport } from "../../util";
 import { COLORS } from "../../constants";
-import { NavbarContent } from "./NavbarContent";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +34,7 @@ export const Navbar = () => {
   return (
     <>
       {currentWidth > mobileBreakpoint ? (
-        <NavbarContent />
+        <div></div>
       ) : (
         <div className={classes.root}>
           <AppBar

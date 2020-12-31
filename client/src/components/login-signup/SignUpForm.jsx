@@ -110,11 +110,11 @@ export const SignUpForm = () => {
     <Paper style={modalStyle} className={classes.paper}>
       <IconContext.Provider value={{ size: "1.5rem" }}>
         <form onSubmit={handleSignUp} autoComplete="off">
-          <EmailPassword>
+          <EmailPassword role="form">
             <H2>Please enter your email and a secure password</H2>
             <InputDivEmail>
               <Icon>
-                <AiOutlineMail />
+                <AiOutlineMail alt="email" />
               </Icon>
               <Input
                 value={email}
@@ -128,7 +128,7 @@ export const SignUpForm = () => {
             </InputDivEmail>
             <InputDivPass>
               <Icon>
-                <FiKey />
+                <FiKey alt="password" />
               </Icon>
               <Input
                 value={firstPassword}
@@ -141,7 +141,7 @@ export const SignUpForm = () => {
             </InputDivPass>
             <InputDivPass>
               <Icon>
-                <FiKey />
+                <FiKey alt="password" />
               </Icon>
               <Input
                 value={password}
@@ -154,7 +154,7 @@ export const SignUpForm = () => {
             </InputDivPass>
             <div>
               {firstPassword !== password ? (
-                <p>Passwords do not match</p>
+                <PassError>Passwords do not match</PassError>
               ) : null}
             </div>
             <Button type="submit">Sign up</Button>
@@ -200,7 +200,6 @@ const EmailPassword = styled.div`
 
   width: 70vw;
   color: white;
-  
 `;
 
 const H2 = styled.h2`
@@ -258,6 +257,22 @@ const Input = styled.input`
   &::placeholder {
     color: rgba(255, 255, 255, 0.8);
   }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
+`;
+
+const PassError = styled.p`
+  color: white;
+  background-color: #610000;
+  padding: 3px;
+  margin-bottom: 10px;
+
+  font-size: 1.2rem;
+  font-weight: bold;
 `;
 
 const Button = styled.button`
@@ -281,5 +296,11 @@ const Button = styled.button`
   &:hover {
     color: ${COLORS.desertSand};
     border: 2px solid ${COLORS.desertSand};
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
   }
 `;

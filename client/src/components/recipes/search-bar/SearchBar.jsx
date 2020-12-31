@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-
-import { useSelector } from "react-redux";
-import { getRecipe } from "../../../redux/reducers/RecipesReducer";
+import React from "react";
 
 import Toolbar from "@material-ui/core/Toolbar";
 import SearchIcon from "@material-ui/icons/Search";
@@ -17,14 +14,17 @@ const useStyles = makeStyles(() => ({
     paddingLeft: 5,
     borderRadius: 10,
     marginTop: "1rem",
+
   },
   searchIcon: {
     alignSelf: "flex-end",
     marginBottom: 5,
+
   },
   searchInput: {
     width: 200,
     margin: 5,
+
   },
 }));
 

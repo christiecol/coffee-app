@@ -44,4 +44,10 @@ const Button = styled.button`
   cursor: pointer;
 
   background-color: ${COLORS.cultured};
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
 `;

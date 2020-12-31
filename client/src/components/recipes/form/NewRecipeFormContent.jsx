@@ -1,5 +1,3 @@
-//todo: tooltip for more information
-
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -9,10 +7,9 @@ import { GiMokaPot, GiCoffeeBeans } from "react-icons/gi";
 import { IoWaterOutline, IoTimerOutline } from "react-icons/io5";
 import { VscNote } from "react-icons/vsc";
 import { MdComment } from "react-icons/md";
-import {GoPrimitiveDot} from "react-icons/go"
+import { GoPrimitiveDot } from "react-icons/go";
 
 import { COLORS } from "../../../constants";
-import { responseRecipe } from "../../../redux/actions/actions";
 
 export const NewRecipeFormContent = () => {
   const [origin, setOrigin] = useState("");
@@ -58,7 +55,7 @@ export const NewRecipeFormContent = () => {
       <IconContext.Provider value={{ size: "2rem" }}>
         <Form onSubmit={handleSubmit}>
           <Title>What Are You Brewing Today?</Title>
-
+          <Name>Origin</Name>
           <IconInput>
             <Icon>
               <FiGlobe />
@@ -71,6 +68,7 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
+          <Name>Roaster</Name>
           <IconInput>
             <Icon>
               <FiCoffee />
@@ -83,6 +81,7 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
+          <Name>Name</Name>
           <IconInput>
             <Icon>
               <FiTag />
@@ -95,6 +94,7 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
+          <Name>Brew Method</Name>
           <IconInput>
             <Icon>
               <GiMokaPot />
@@ -115,6 +115,7 @@ export const NewRecipeFormContent = () => {
             </datalist>
           </IconInput>
 
+          <Name>Grams of coffee</Name>
           <IconInput>
             <Icon>
               <GiCoffeeBeans />
@@ -127,7 +128,7 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
-
+          <Name>Grind Size</Name>
           <IconInput>
             <Icon>
               <GoPrimitiveDot />
@@ -140,6 +141,7 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
+          <Name>Grams of water</Name>
           <IconInput>
             <Icon>
               <IoWaterOutline />
@@ -152,6 +154,7 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
+          <Name>Brew Time</Name>
           <IconInput>
             <Icon>
               <IoTimerOutline />
@@ -173,6 +176,7 @@ export const NewRecipeFormContent = () => {
             s
           </IconInput>
 
+          <Name>Tasting notes</Name>
           <IconInput>
             <Icon>
               <VscNote />
@@ -185,6 +189,7 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
+          <Name>Comments</Name>
           <IconInput>
             <Icon>
               <MdComment />
@@ -206,6 +211,7 @@ export const NewRecipeFormContent = () => {
 
 const Title = styled.h1`
   font-size: 1.4rem;
+  margin-bottom: 1.5rem;
 `;
 
 const Form = styled.form`
@@ -225,12 +231,16 @@ const Form = styled.form`
   box-shadow: 0px 0px 9px 1px #252525;
 `;
 
+const Name = styled.p`
+  margin-bottom: 0.2rem;
+`;
+
 const IconInput = styled.div`
   display: flex;
   align-items: center;
 
   height: 2rem;
-  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 `;
 
 const Icon = styled.span`
@@ -274,4 +284,10 @@ const Button = styled.button`
   cursor: pointer;
 
   background-color: ${COLORS.cultured};
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
 `;

@@ -6,7 +6,7 @@ import { GiMokaPot, GiCoffeeBeans } from "react-icons/gi";
 import { IoWaterOutline, IoTimerOutline } from "react-icons/io5";
 import { VscNote } from "react-icons/vsc";
 import { MdComment } from "react-icons/md";
-import {GoPrimitiveDot} from "react-icons/go"
+import { GoPrimitiveDot } from "react-icons/go";
 
 import { COLORS } from "../../../constants";
 import { DeleteActionButton } from "./DeleteActionButton";
@@ -17,74 +17,102 @@ export const AllRecipes = ({ recipe }) => {
     <>
       <IconContext.Provider value={{ size: "1.3rem", zIndex: "100" }}>
         <Wrapper>
-          {/* date here */}
           <LeftDiv>
             {recipe.brewMethod && (
-              <ItemDiv>
-                <GiMokaPot />
-                <P>{recipe.brewMethod}</P>
-              </ItemDiv>
+              <>
+                <p>Brew Method</p>
+                <ItemDiv>
+                  <GiMokaPot />
+                  <P>{recipe.brewMethod}</P>
+                </ItemDiv>
+              </>
             )}
 
             {recipe.grams && (
-              <ItemDiv>
-                <GiCoffeeBeans />
-                <P>{recipe.grams}g</P>
-              </ItemDiv>
+              <>
+                <p>Grams</p>
+                <ItemDiv>
+                  <GiCoffeeBeans />
+                  <P>{recipe.grams}g</P>
+                </ItemDiv>
+              </>
             )}
 
             {recipe.grindSize && (
-              <ItemDiv>
-                <GoPrimitiveDot />
-                <P>{recipe.grindSize}</P>
-              </ItemDiv>
+              <>
+                <p>Grind size</p>
+
+                <ItemDiv>
+                  <GoPrimitiveDot />
+                  <P>{recipe.grindSize}</P>
+                </ItemDiv>
+              </>
             )}
 
             {recipe.water && (
-              <ItemDiv>
-                <IoWaterOutline />
-                <P>{recipe.water}</P>
-              </ItemDiv>
+              <>
+                <p>Grams of water</p>
+
+                <ItemDiv>
+                  <IoWaterOutline />
+                  <P>{recipe.water}</P>
+                </ItemDiv>
+              </>
             )}
 
             {!recipe.minutes && !recipe.seconds ? null : (
-              <ItemDiv>
-                <IoTimerOutline />
-                <P>{recipe.minutes}m </P>
-                <P>{recipe.seconds}s</P>
-              </ItemDiv>
+              <>
+                <p>Time</p>
+                <ItemDiv>
+                  <IoTimerOutline />
+                  <P>{recipe.minutes}m </P>
+                  <P>{recipe.seconds}s</P>
+                </ItemDiv>
+              </>
             )}
             {recipe.minutes && !recipe.seconds ? (
-              <ItemDiv>
-                <IoTimerOutline />
-                <P>{recipe.minutes}m</P>
-              </ItemDiv>
+              <>
+                <p>Time</p>
+                <ItemDiv>
+                  <IoTimerOutline />
+                  <P>{recipe.minutes}m</P>
+                </ItemDiv>
+              </>
             ) : null}
             {!recipe.minutes && recipe.seconds ? (
-              <ItemDiv>
-                <IoTimerOutline />
-                <P>0m</P>
-                <P>{recipe.seconds}s</P>
-              </ItemDiv>
+              <>
+                <p>Time</p>
+                <ItemDiv>
+                  <IoTimerOutline />
+                  <P>0m</P>
+                  <P>{recipe.seconds}s</P>
+                </ItemDiv>
+              </>
             ) : null}
           </LeftDiv>
           <RightDiv>
             {recipe.notes && (
-              <ItemDiv>
-                <span>
-                  <VscNote />
-                </span>
-                <P>{recipe.notes}</P>
-              </ItemDiv>
+              <>
+                <p>Notes</p>
+                <ItemDiv>
+                  <span>
+                    <VscNote />
+                  </span>
+                  <P>{recipe.notes}</P>
+                </ItemDiv>
+              </>
             )}
 
             {recipe.comments && (
-              <ItemDiv>
-                <span>
-                  <MdComment />
-                </span>
-                <P>{recipe.comments}</P>
-              </ItemDiv>
+              <>
+                <p>Comments</p>
+                <ItemDiv>
+                  <span>
+                    <MdComment />
+                  </span>
+                  <P>{recipe.comments}</P>
+                </ItemDiv>
+              </>
             )}
             <DeleteActionButton id={recipe._id} />
           </RightDiv>
@@ -108,6 +136,8 @@ const Wrapper = styled.div`
   padding: 0 20px 10px;
 
   border-radius: 0 0 15px 15px;
+
+  color: white;
 `;
 
 const LeftDiv = styled.div`
@@ -120,7 +150,8 @@ const ItemDiv = styled.div`
   align-items: start;
   justify-content: flex-start;
 
-  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 0.2rem;
   border-radius: 5px;
   padding: 5px;
   font-size: 1.3rem;

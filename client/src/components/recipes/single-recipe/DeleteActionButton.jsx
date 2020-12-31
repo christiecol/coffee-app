@@ -43,4 +43,10 @@ const Button = styled.button`
   color: white;
 
   border: 1px solid red;
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
 `;

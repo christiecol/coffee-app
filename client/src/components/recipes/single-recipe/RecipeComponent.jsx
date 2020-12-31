@@ -98,11 +98,30 @@ const RecipeInfo = styled.div`
   /* box-shadow: 0px 5px 9px 0.5px #252525; */
 `;
 
-const DropdownButton = styled(RecipeInfo)`
+const DropdownButton = styled.button`
+  all: unset;
+
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  width: 80vw;
+  z-index: 100;
+
+  background-color: ${COLORS.darkTransparentTwo};
+  color: white;
+
+  margin: 2rem 1rem 0;
   margin-top: 0;
-  border-radius: 0;
-  box-shadow: 0;
+
+  padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
 `;
 
 const DropdownSelector = styled.div`
@@ -132,6 +151,12 @@ const ItemDiv = styled.div`
 const FullReciP = styled.p`
   display: flex;
   align-items: center;
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
 `;
 
 const OptionsDiv = styled(ItemDiv)`

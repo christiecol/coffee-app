@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -7,12 +7,6 @@ import {
   responseAllOriginsError,
 } from "../../redux/actions/actions";
 
-//selectors
-import {
-  getOrigins,
-  getOriginsPending,
-  getOriginsError,
-} from "../../redux/reducers/AllOriginsReducer";
 
 export const FetchOrigins = () => {
   const dispatch = useDispatch();

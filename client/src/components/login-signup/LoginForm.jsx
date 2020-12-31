@@ -8,8 +8,6 @@ import { FiKey } from "react-icons/fi";
 import { AiOutlineMail } from "react-icons/ai";
 import { BsBoxArrowInRight } from "react-icons/bs";
 
-import { requirePropFactory } from "@material-ui/core";
-
 import { COLORS } from "../../constants";
 import { SignUpForm } from "./SignUpForm";
 import { responseUser } from "../../redux/actions/actions";
@@ -64,17 +62,17 @@ export const LoginForm = () => {
   return (
     <Wrapper>
       <WrapperOverlay>
-        <ImgDiv>
-          <img src={Logo} />
+        <ImgDiv role="banner">
+          <img src={Logo} alt="" />
         </ImgDiv>
 
         <IconContext.Provider value={{ size: "1.5rem" }}>
           <form onSubmit={handleLogin}>
-            <EmailPassword>
+            <EmailPassword role="form">
               <H2>Already a member?</H2>
               <InputDivEmail>
                 <Icon>
-                  <AiOutlineMail />
+                  <AiOutlineMail alt="email" />
                 </Icon>
                 <Input
                   value={email}
@@ -88,7 +86,7 @@ export const LoginForm = () => {
               </InputDivEmail>
               <InputDivPass>
                 <Icon>
-                  <FiKey />
+                  <FiKey alt="password" />
                 </Icon>
                 <Input
                   value={password}
@@ -203,6 +201,12 @@ const Input = styled.input`
   &::placeholder {
     color: rgba(255, 255, 255, 0.8);
   }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
 `;
 
 const H2 = styled.h3`
@@ -239,6 +243,12 @@ const Button = styled.button`
     color: ${COLORS.desertSand};
     border: 2px solid ${COLORS.desertSand};
   }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
 `;
 
 const A = styled.a`
@@ -253,5 +263,11 @@ const A = styled.a`
 
   &:hover {
     color: white;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
   }
 `;

@@ -59,7 +59,7 @@ const Wrapper = styled.div`
   background-image: url(${Beans});
   background-size: contain;
   overflow: hidden;
-  z-index: -1000;
+  z-index: -2000;
 
   min-height: 100vh;
 `;

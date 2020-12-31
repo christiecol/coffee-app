@@ -13,10 +13,10 @@ import { FiCoffee } from "react-icons/fi";
 export const HomePageItems = () => {
   return (
     <>
-      <BannerImgAndText>
+      <BannerImgAndText role="banner">
         <ImgDivDiv>
           <ImgDiv>
-            <LogoImg src={Logo} />
+            <LogoImg src={Logo} alt="coffee beans on a scale" />
           </ImgDiv>
         </ImgDivDiv>
 
@@ -32,7 +32,10 @@ export const HomePageItems = () => {
         </BannerOverlay>
       </BannerImgAndText>
       <RecipeLinkDiv>
-        <Bio>Add some inspiration to your day with Catimor. Infuse your morning with the scent of freshly made coffee, brewed to perfection.</Bio>
+        <Bio>
+          Add some inspiration to your day with Catimor. Infuse your morning
+          with the scent of freshly made coffee, brewed to perfection.
+        </Bio>
         <NavLinkRecipes to="/myrecipes">Start brewing now {">"}</NavLinkRecipes>
       </RecipeLinkDiv>
 
@@ -114,32 +117,38 @@ const BottomText = styled.div`
 `;
 
 const RecipeLinkDiv = styled.div`
-text-align: center;
+  text-align: center;
 
-padding: 3rem 0;
-padding-bottom: 4rem;
-background-color: ${COLORS.cultured};
-
+  padding: 3rem 0;
+  padding-bottom: 4rem;
+  background-color: ${COLORS.cultured};
 `;
 
-const Bio = styled.p`  font-size: 1.8rem;
-line-height: 4rem;
-letter-spacing: 3px;
-font-weight: 300;
-margin: 0 1.5rem 2rem 1.5rem;
+const Bio = styled.p`
+  font-size: 1.8rem;
+  line-height: 4rem;
+  letter-spacing: 3px;
+  font-weight: 300;
+  margin: 0 1.5rem 2rem 1.5rem;
 
-color: ${COLORS.feldgrauDarkTransparent}
-`
+  color: ${COLORS.feldgrauDarkTransparent};
+`;
 
 const NavLinkRecipes = styled(NavLink)`
-all: unset;
+  all: unset;
 
-padding: 15px;
+  padding: 15px;
 
-font-weight: 600;
-font-size: 1.3rem;
-letter-spacing: 3px;
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: 3px;
 
-border: 1px solid ${COLORS.feldgrauDarkTransparent};
-color: ${COLORS.feldgrauDark}
-`
+  border: 1px solid ${COLORS.feldgrauDarkTransparent};
+  color: ${COLORS.feldgrauDark};
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+    outline: 2px dotted transparent;
+    outline-offset: 2px;
+  }
+`;
