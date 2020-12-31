@@ -1,6 +1,4 @@
-coffee!
-
-image credits:
+Image credits:
 Panama-
 Alessa Ciraulo on Unsplash
 Brazil-
