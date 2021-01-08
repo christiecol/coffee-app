@@ -1,3 +1,7 @@
+An app for the coffee lovers.
+Record recipes and learn about origins and different brew methods!
+
+
 Image credits:
 Panama-
 Alessa Ciraulo on Unsplash
