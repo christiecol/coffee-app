@@ -14,17 +14,14 @@ const useStyles = makeStyles(() => ({
     paddingLeft: 5,
     borderRadius: 10,
     marginTop: "1rem",
-
   },
   searchIcon: {
     alignSelf: "flex-end",
     marginBottom: 5,
-
   },
   searchInput: {
     width: 200,
     margin: 5,
-
   },
 }));
 
@@ -33,7 +30,7 @@ export const SearchBar = ({ input, setInput }) => {
 
   return (
     <>
-      <Toolbar>
+      <Toolbar role="search">
         <div className={classes.searchContainer}>
           <SearchIcon className={classes.searchIcon} />
           <TextField

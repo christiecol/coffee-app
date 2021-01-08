@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { FetchOrigins } from "../../components/origins/FetchOrigins";
 import { getOrigins } from "../../redux/reducers/AllOriginsReducer";
 
+import { COLORS } from "../../constants";
+
 export const OriginsPage = () => {
   const state = useSelector(getOrigins);
   console.log("origins", state);
@@ -16,13 +18,14 @@ export const OriginsPage = () => {
     },
   ];
   return (
-    <Grid>
+    <Grid role="main">
+      <H1>Origins</H1>
       {state.origins.map((origin) => {
         return (
           <Card>
             <ImgDiv>
-              <Image src={origin.img} />
-              <Country>{origin.origin}</Country>
+              <Image src={origin.img} alt="origin image" />
+              <Country aria-label="Country of origin">{origin.origin}</Country>
             </ImgDiv>
             <Fact>{dummyData[0].fact}</Fact>
             <Flavor>{dummyData[0].flavorProfile}</Flavor>
@@ -35,13 +38,22 @@ export const OriginsPage = () => {
 };
 
 const Grid = styled.div`
-  margin-top: 5rem;
+  margin-top: 1rem;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 
   z-index: -100;
+`;
+
+const H1 = styled.h1`
+  font-size: 5rem;
+
+  text-align: center;
+  margin-top: 1rem;
+
+  color: ${COLORS.blackCoffee};
 `;
 
 const Card = styled.div`

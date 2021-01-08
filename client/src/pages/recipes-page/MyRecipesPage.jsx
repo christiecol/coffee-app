@@ -9,6 +9,7 @@ import { NewRecipeForm } from "../../components/recipes/form/NewRecipeForm";
 import { SearchBar } from "../../components/recipes/search-bar/SearchBar";
 import { RecipeButtons } from "../../components/recipes/single-recipe/RecipeButtons";
 import Beans from "../../images/nordwood-themes-ivP3TYdLvw0-unsplash.jpg";
+import { COLORS } from "../../constants";
 
 export const MyRecipesPage = () => {
   let recipes = useSelector(getRecipe);
@@ -41,9 +42,10 @@ export const MyRecipesPage = () => {
   });
 
   return (
-    <Wrapper>
+    <Wrapper role="main">
       <FetchRecipes />
       <SearchBar input={input} setInput={setInput} />
+      <H1>My Recipes</H1>
       <NewRecipeForm />
       <SingleRecipeDiv>
         <RecipeButtons
@@ -62,6 +64,14 @@ const Wrapper = styled.div`
   z-index: -2000;
 
   min-height: 100vh;
+`;
+const H1 = styled.h1`
+  font-size: 5rem;
+
+  text-align: center;
+  margin-top: 1rem;
+
+  color: ${COLORS.blackCoffee};
 `;
 
 const SingleRecipeDiv = styled.div`

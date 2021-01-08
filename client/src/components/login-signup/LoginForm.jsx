@@ -60,9 +60,9 @@ export const LoginForm = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper role="main">
       <WrapperOverlay>
-        <ImgDiv role="banner">
+        <ImgDiv>
           <img src={Logo} alt="" />
         </ImgDiv>
 
@@ -147,7 +147,7 @@ const EmailPassword = styled.div`
 
   width: 70vw;
 
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
 `;
 
 const SignIn = styled(EmailPassword)`

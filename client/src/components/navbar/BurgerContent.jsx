@@ -118,6 +118,7 @@ export const BurgerContent = () => {
               >
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
+                    role="navigation"
                     tabIndex="-1"
                     style={{ zIndex: 1000, padding: 0 }}
                     autoFocusItem={open}
@@ -167,8 +168,8 @@ export const BurgerContent = () => {
             </Grow>
           )}
         </Popper>
-        <NavLinkHome to="/home">
-          <Img src={Logo} />
+        <NavLinkHome to="/home" aria-label="jump to homepage">
+          <Img src={Logo} alt="Catimor Logo" />
         </NavLinkHome>
       </Toolbar>
     </>

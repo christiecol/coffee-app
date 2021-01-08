@@ -15,46 +15,61 @@ import {
 import { getUser } from "../../../redux/reducers/UsersReducer";
 
 export const RecipeFavouriteButton = ({ recipe }) => {
+  const currentUserEmail = useSelector(getUser);
+  const dispatch = useDispatch();
+
   const [toggle, setToggle] = useState(false);
 
-  const currentUserEmail = useSelector(getUser);
   const favourites = useSelector((state) => {
     return state?.users?.favourites;
   });
-  console.log(favourites);
-  console.log("currentemail", currentUserEmail);
-  const dispatch = useDispatch();
+  // console.log(favourites);
+  // console.log("currentemail", currentUserEmail);
   const colored = favourites?.includes(recipe._id);
 
   const handleFavouriteRecipe = () => {
-    setToggle(!toggle);
-
-    fetch("/addfavourite", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: currentUserEmail,
-        recipeId: recipe._id,
-      }),
-    })
-      .then((res) => {
-        if (res.error) {
-          throw res.error;
-        }
-        return res.json();
+    if (!toggle) {
+      fetch("/addfavourite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: currentUserEmail,
+          recipeId: recipe._id,
+        }),
       })
-      .then((res) => {
-        console.log(res);
-        if (res.actionType === "ADD_TO_FAVOURITES") {
-          console.log("hello");
+        .then((res) => {
+          if (res.error) {
+            throw res.error;
+          }
+          return res.json();
+        })
+        .then((res) => {
+          console.log(res);
           dispatch(addToFavourites(recipe._id));
-        }
-        if (res.actionType === "REMOVE_FROM_FAVOURITES") {
+        });
+    } else {
+      fetch("/removefavourite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: currentUserEmail,
+          recipeId: recipe._id,
+        }),
+      })
+        .then((res) => {
+          if (res.error) {
+            throw res.error;
+          }
+          return res.json();
+        })
+        .then((res) => {
+          console.log(res);
+
           dispatch(removeFromFavourites(recipe._id));
-        }
-      });
+        });
+    }
   };
-  // console.log(recipeId);
+
   return (
     <>
       <IconContext.Provider value={{ size: "1.7rem" }}>
@@ -62,12 +77,14 @@ export const RecipeFavouriteButton = ({ recipe }) => {
           <div>
             <DropdownSelector>
               <IconButton
+                aria-label="favourite recipe"
                 value={(currentUserEmail, recipe._id)}
                 onClick={() => {
+                  setToggle(!toggle);
                   handleFavouriteRecipe();
                 }}
               >
-                {!colored ? <MdFavoriteBorder /> : <MdFavorite />}
+                {!toggle ? <MdFavoriteBorder /> : <MdFavorite />}
               </IconButton>
             </DropdownSelector>
           </div>

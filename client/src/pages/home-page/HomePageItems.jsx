@@ -16,7 +16,7 @@ export const HomePageItems = () => {
       <BannerImgAndText role="banner">
         <ImgDivDiv>
           <ImgDiv>
-            <LogoImg src={Logo} alt="coffee beans on a scale" />
+            <LogoImg src={Logo} alt="Catimor brewing logo" />
           </ImgDiv>
         </ImgDivDiv>
 
@@ -28,7 +28,7 @@ export const HomePageItems = () => {
             </p>
           </BottomText>
 
-          <BannerImg src={Banner} />
+          <BannerImg src={Banner} alt="coffee beans on a scale" />
         </BannerOverlay>
       </BannerImgAndText>
       <RecipeLinkDiv>

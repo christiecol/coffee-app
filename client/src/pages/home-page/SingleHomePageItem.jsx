@@ -16,8 +16,19 @@ export const SingleHomePageItem = ({
           <Href href="https://www.cafekujira.com/">{href}</Href>
           {description}
         </Description>
-        {link && <Link to="/origins">{link}</Link>}
-        {linkBrew && <Link to="/brewmethods">{linkBrew}</Link>}
+        {link && (
+          <Link
+            to="/origins"
+            aria-label="Want to know more about specific origins?"
+          >
+            {link}
+          </Link>
+        )}
+        {linkBrew && (
+          <Link to="/brewmethods" aria-label="browse all brew methods">
+            {linkBrew}
+          </Link>
+        )}
       </ParaWrapper>
     </ItemDiv>
   );
@@ -39,7 +50,6 @@ const ParaWrapper = styled.div`
   align-items: center;
 
   text-align: center;
-  /* margin: 1rem 1rem 3rem 1rem; */
   padding: 5rem 1rem;
 
   background-color: ${COLORS.cultured};

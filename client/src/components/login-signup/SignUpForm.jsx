@@ -9,6 +9,7 @@ import { AiOutlineMail } from "react-icons/ai";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import DialogContent from "@material-ui/core/DialogContent";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 
@@ -181,9 +182,11 @@ export const SignUpForm = () => {
           timeout: 600,
         }}
       >
-        {/* <Fade in={open}> */}
-        {subStatus !== "success" && body}
-        {/* </Fade> */}
+        <DialogContent>
+          {/* <Fade in={open}> */}
+          {subStatus !== "success" && body}
+          {/* </Fade> */}
+        </DialogContent>
       </Modal>
     </div>
   );

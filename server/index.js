@@ -1,13 +1,10 @@
 const express = require("express");
-const helmet = require("helmet");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 
-const {
-  signUp,
-  logIn,
-  addFavourite,
-} = require("./handlers/signUpLoginHandlers");
+// import { userRoutes, sessionRoutes } from "./routes/index";
+
+const { signUp, logIn } = require("./handlers/signUpLoginHandlers");
 
 const {
   allOrigins,
@@ -23,10 +20,17 @@ const {
   updateRecipe,
   deleteRecipe,
 } = require("./handlers/recipeHandlers");
+const {
+  removeFavourite,
+  addFavourite,
+} = require("./handlers/favouritesHandlers");
 
 const PORT = process.env.PORT;
 
 const app = express();
+
+// make it harder to see that express is running the app
+app.disable("x-powered-by");
 
 app
 
@@ -36,8 +40,10 @@ app
 
   .use(bodyParser.json())
 
-  // RESTful endpoints
+  // endpoints
   //-----------------------
+  // user (userRoutes)
+  // .post("", userRoutes)
   // signup
   .post("/signup", signUp)
 
@@ -73,8 +79,10 @@ app
   //delete data
   .delete("/api/recipes/:_id", deleteRecipe)
 
+  // favourites
   //add a favourite
   .post("/addfavourite", addFavourite)
+  .post("/removefavourite", removeFavourite)
   //-----------------------
 
   .get("*", (req, res) => {
