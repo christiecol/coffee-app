@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { Provider } from "react-redux";
+
+import store from "./index";
+import { responseUser } from "./redux/actions/actions";
+import { getUser } from "./redux/reducers/UsersReducer";
+import { getFav } from "./redux/reducers/UsersReducer";
 
 import { HomePage } from "./pages/home-page/HomePage";
 import { Navbar } from "./components/navbar/Navbar";
@@ -11,6 +17,16 @@ import { LogInPage } from "./pages/log-in/LoginPage";
 import { BrewMethodsPage } from "./pages/brew-methods/BrewMethodsPage";
 
 function App() {
+  // let currentUserEmail = useSelector(getUser);
+  // let currentUserFav = useSelector(getFav);
+  // const [user, setUser] = useState(currentUserEmail)
+
+  let persistedState = useSelector((state) => {
+    return state?.users;
+  });
+
+  console.log("STATE", persistedState);
+
   const MainLayout = ({ children }) => (
     <>
       <Navbar />
@@ -18,8 +34,20 @@ function App() {
     </>
   );
 
+  useEffect(() => {
+    const data = localStorage.getItem("user");
+    if (data) {
+      persistedState = JSON.parse(data);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(persistedState));
+  });
+
   return (
     <>
+      {/* <Provider store={store}> */}
       <Router>
         <GlobalStyles />
 
@@ -46,7 +74,6 @@ function App() {
             </MainLayout>
           </Route>
 
-
           <Route exact path="/myrecipes">
             <MainLayout>
               <MyRecipesPage />
@@ -54,6 +81,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      {/* </Provider> */}
     </>
   );
 }

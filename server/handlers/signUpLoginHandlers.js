@@ -1,6 +1,8 @@
 const { MongoClient, ObjectId } = require("mongodb");
 
+const passportLocal = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
+const session = require("express-session");
 const jwt = require("jsonwebtoken");
 const { secret } = require("../config");
 
@@ -91,6 +93,7 @@ const logIn = async (req, res) => {
       res.status(400).json({ message: "invalid credentials" });
       return;
     }
+
     jwt.sign({ _id: userFromDb._id }, secret, function (err, token) {
       if (err) {
         res.status(500).send({ error: err.message });
@@ -110,7 +113,16 @@ const logIn = async (req, res) => {
   client.close();
 };
 
+const logOut = async (req, res) => {
+  var name = req.user.username;
+  console.log("LOGGIN OUT " + req.user.username);
+  req.logout();
+  res.redirect("/");
+  req.session.notice = "You have successfully been logged out " + name + "!";
+};
+
 module.exports = {
   signUp,
   logIn,
+  logOut,
 };

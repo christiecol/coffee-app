@@ -7,7 +7,7 @@ export default function UsersReducer(state = initialState, action) {
 
   switch (action.type) {
     case "RESPONSE_USER": {
-      console.log(action)
+      console.log(action);
       return {
         ...state,
         user: action.email,
@@ -39,4 +39,8 @@ export default function UsersReducer(state = initialState, action) {
 export const getUser = (state) => {
   console.log(state);
   return state.users.user;
+};
+
+export const getFav = (state) => {
+  return state.favourites;
 };

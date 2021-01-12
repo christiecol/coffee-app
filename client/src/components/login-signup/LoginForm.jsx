@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
@@ -53,6 +53,7 @@ export const LoginForm = () => {
       .then((res) => {
         console.log(res);
         const { email, favourites, token } = res;
+        console.log("data!!", res);
         dispatch(responseUser(email, favourites, token));
         history.push("/home");
       })

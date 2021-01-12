@@ -1,10 +1,14 @@
 const express = require("express");
+const session = require("express-session");
+const passport = require("passport");
+
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 // import { userRoutes, sessionRoutes } from "./routes/index";
 
-const { signUp, logIn } = require("./handlers/signUpLoginHandlers");
+const { signUp, logIn, logOut } = require("./handlers/signUpLoginHandlers");
 
 const {
   allOrigins,
@@ -25,7 +29,21 @@ const {
   addFavourite,
 } = require("./handlers/favouritesHandlers");
 
-const PORT = process.env.PORT;
+// const PORT = process.env.PORT;
+// const SESS_LIFETIME = process.env.SESS_LIFETIME
+
+const { PORT, SESS_LIFETIME, SESS_NAME, SESS_SECRET } = process.env;
+
+const sessionAuth = {
+  name: SESS_NAME,
+  resave: false,
+  saveUninitialized: false,
+  secret: SESS_SECRET,
+  cookie: {
+    // maxAge: SESS_LIFETIME,
+    sameSite: true,
+  },
+};
 
 const app = express();
 
@@ -40,6 +58,16 @@ app
 
   .use(bodyParser.json())
 
+  .use(bodyParser.urlencoded({ extended: true }))
+
+  .use(session(sessionAuth))
+
+  .use(cookieParser(SESS_SECRET))
+
+  .use(passport.initialize())
+
+  .use(passport.session())
+
   // endpoints
   //-----------------------
   // user (userRoutes)
@@ -49,6 +77,9 @@ app
 
   //login
   .post("/login", logIn)
+
+  //logout
+  .get("/logout", logOut)
 
   //origins
   // get all
