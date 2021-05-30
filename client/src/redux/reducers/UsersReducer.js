@@ -1,5 +1,5 @@
 const initialState = {
-  user: {},
+  user: { favourites: [] },
 };
 
 export default function UsersReducer(state = initialState, action) {
@@ -7,7 +7,7 @@ export default function UsersReducer(state = initialState, action) {
 
   switch (action.type) {
     case "RESPONSE_USER": {
-      console.log(action);
+      console.log("RESPONSEUSER", action.email);
       return {
         ...state,
         user: action.email,
@@ -16,13 +16,18 @@ export default function UsersReducer(state = initialState, action) {
       };
     }
     case "ADD_TO_FAVOURITES": {
-      console.log(action);
-      newState.favourites.push(action.recipe);
+      try {
+        console.log("NEWSTATEFAVS", newState.favourites);
+        newState.user.favourites.push(action.recipe);
+        console.log("NEWSTATE", newState);
+        // console.log("NEWSTATEFAV", newState.favourites);
+      } catch (err) {
+        console.log(err);
+      }
       return newState;
     }
 
     case "REMOVE_FROM_FAVOURITES": {
-      console.log(action);
       console.log(action.recipe);
       const idIndex = newState.favourites.indexOf(action.recipe);
       console.log(idIndex);

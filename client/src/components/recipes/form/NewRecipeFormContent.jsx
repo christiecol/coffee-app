@@ -52,14 +52,17 @@ export const NewRecipeFormContent = () => {
 
   return (
     <>
-      <IconContext.Provider value={{ size: "2rem" }}>
+      <IconContext.Provider
+        value={{
+          size: "2rem",
+        }}
+      >
         <Form onSubmit={handleSubmit}>
           <Title>What Are You Brewing Today?</Title>
-          <Name>Origin</Name>
+
+          <p>Origin</p>
           <IconInput>
-            <Icon>
-              <FiGlobe />
-            </Icon>
+            <FiGlobe />
             <Input
               value={origin}
               type="text"
@@ -68,11 +71,9 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
-          <Name>Roaster</Name>
+          <p>Roaster</p>
           <IconInput>
-            <Icon>
-              <FiCoffee />
-            </Icon>
+            <FiCoffee />
             <Input
               value={roaster}
               type="text"
@@ -81,11 +82,9 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
-          <Name>Name</Name>
+          <p>Name</p>
           <IconInput>
-            <Icon>
-              <FiTag />
-            </Icon>
+            <FiTag />
             <Input
               value={name}
               type="text"
@@ -94,11 +93,9 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
-          <Name>Brew Method</Name>
+          <p>Brew Method</p>
           <IconInput>
-            <Icon>
-              <GiMokaPot />
-            </Icon>
+            <GiMokaPot />
             <Input
               list="methods"
               value={brewMethod}
@@ -115,24 +112,20 @@ export const NewRecipeFormContent = () => {
             </datalist>
           </IconInput>
 
-          <Name>Grams of coffee</Name>
+          <p>Grams of coffee</p>
           <IconInput>
-            <Icon>
-              <GiCoffeeBeans />
-            </Icon>
+            <GiCoffeeBeans />
             <Input
               value={grams}
-              type="text"
+              type="number"
               placeholder="Grams of coffee"
               onChange={(ev) => setGrams(ev.target.value)}
             />
           </IconInput>
 
-          <Name>Grind Size</Name>
+          <p>Grind Size</p>
           <IconInput>
-            <Icon>
-              <GoPrimitiveDot />
-            </Icon>
+            <GoPrimitiveDot />
             <Input
               value={grindSize}
               type="text"
@@ -141,46 +134,40 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
-          <Name>Grams of water</Name>
+          <p>Grams of water</p>
           <IconInput>
-            <Icon>
-              <IoWaterOutline />
-            </Icon>
+            <IoWaterOutline />
             <Input
               value={water}
-              type="text"
+              type="number"
               placeholder="Grams of Water"
               onChange={(ev) => setWater(ev.target.value)}
             />
           </IconInput>
 
-          <Name>Brew Time</Name>
+          <p>Brew Time</p>
           <IconInput>
-            <Icon>
-              <IoTimerOutline />
-            </Icon>
+            <IoTimerOutline />
             <span>
               <TimeInput
                 value={minutes}
-                type="text"
-                placeholder="Time"
+                type="number"
+                placeholder="minutes"
                 onChange={(ev) => setMinutes(ev.target.value)}
               />
-              m
+              :
             </span>
             <TimeInput
               value={seconds}
-              type="text"
+              type="number"
+              placeholder="seconds"
               onChange={(ev) => setSeconds(ev.target.value)}
             />
-            s
           </IconInput>
 
-          <Name>Tasting notes</Name>
+          <p>Tasting notes</p>
           <IconInput>
-            <Icon>
-              <VscNote />
-            </Icon>
+            <VscNote />
             <Input
               value={notes}
               type="text"
@@ -189,11 +176,9 @@ export const NewRecipeFormContent = () => {
             />
           </IconInput>
 
-          <Name>Comments</Name>
+          <p>Comments</p>
           <IconInput>
-            <Icon>
-              <MdComment />
-            </Icon>
+            <MdComment />
             <Input
               value={comments}
               placeholder="Additional Comments"
@@ -231,10 +216,6 @@ const Form = styled.form`
   box-shadow: 0px 0px 9px 1px #252525;
 `;
 
-const Name = styled.p`
-  margin-bottom: 0.2rem;
-`;
-
 const IconInput = styled.div`
   display: flex;
   align-items: center;
@@ -243,15 +224,7 @@ const IconInput = styled.div`
   margin-bottom: 1.5rem;
 `;
 
-const Icon = styled.span`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  padding-right: 5px;
-  position: relative;
-`;
+const Icon = styled.div``;
 
 const Input = styled.input`
   height: 2rem;
@@ -260,6 +233,8 @@ const Input = styled.input`
   border-radius: 5px;
   border: none;
   box-shadow: 0px 0px 2px 0.5px ${COLORS.feldgrauDark};
+
+  margin-left: 5px;
 
   &:focus {
     outline: none;

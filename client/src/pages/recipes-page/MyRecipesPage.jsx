@@ -50,6 +50,7 @@ export const MyRecipesPage = () => {
       <SingleRecipeDiv>
         <RecipeButtons
           recipes={recipes}
+          key={recipes._id}
           handleFavouritesClick={addFavouriteRecipe}
         />
       </SingleRecipeDiv>

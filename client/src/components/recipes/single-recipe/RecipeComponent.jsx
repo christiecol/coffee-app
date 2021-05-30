@@ -20,82 +20,71 @@ export const RecipeComponent = ({ recipe }) => {
   return (
     <>
       <IconContext.Provider value={{ size: "1.4rem" }}>
-        <HeaderDiv>
+        <M>
           <div>
-            <RecipeInfo>
-              {recipe.roaster && (
-                <ItemDiv>
-                  <FiCoffee />
-                  <P>{recipe.roaster}</P>
-                </ItemDiv>
-              )}
+            {recipe.roaster && (
+              <ItemDiv>
+                <FiCoffee />
+                <P>{recipe.roaster}</P>
+              </ItemDiv>
+            )}
 
-              {recipe.origin && (
-                <ItemDiv>
-                  <FiGlobe />
-                  <P>{recipe.origin}</P>
-                </ItemDiv>
-              )}
+            {recipe.origin && (
+              <ItemDiv>
+                <FiGlobe />
+                <P>{recipe.origin}</P>
+              </ItemDiv>
+            )}
 
-              {recipe.name && (
-                <ItemDiv>
-                  <FiTag />
-                  <P>{recipe.name}</P>
-                </ItemDiv>
-              )}
-            </RecipeInfo>
-
-            <RecipeFavouriteButton recipe={recipe} />
-            <DropdownButton onClick={() => handleToggle()}>
-              <DropdownSelector>
-                {!toggle ? (
-                  <>
-                    <FullReciP>
-                      View full recipe
-                      <IoIosArrowDropdown />
-                    </FullReciP>
-                  </>
-                ) : (
-                  <>
-                    <FullReciP>
-                      See Less
-                      <IoIosArrowDropup />
-                    </FullReciP>
-                  </>
-                )}
-              </DropdownSelector>
-            </DropdownButton>
+            {recipe.name && (
+              <ItemDiv>
+                <FiTag />
+                <P>{recipe.name}</P>
+              </ItemDiv>
+            )}
           </div>
-        </HeaderDiv>
+
+          <RecipeFavouriteButton recipe={recipe} key={recipe._id} />
+          <DropdownButton onClick={() => handleToggle()}>
+            <div>
+              {!toggle ? (
+                <>
+                  <FullRecipe>
+                    <p style={{ marginRight: "5px" }}>View full recipe</p>
+                    <IoIosArrowDropdown />
+                  </FullRecipe>
+                </>
+              ) : (
+                <>
+                  <FullRecipe>
+                    <p style={{ marginRight: "5px" }}>See Less</p>
+                    <IoIosArrowDropup />
+                  </FullRecipe>
+                </>
+              )}
+            </div>
+          </DropdownButton>
+        </M>
       </IconContext.Provider>
       {toggle ? <AllRecipes recipe={recipe} /> : null}
     </>
   );
 };
-const HeaderDiv = styled.div`
+
+const M = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
+  flex-direction: column;
+  justify-content: flex-end;
 
-const RecipeInfo = styled.div`
-  all: unset;
-
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-
-  margin: 2rem 1rem 0;
   width: 80vw;
-  z-index: 10;
-
-  background-color: ${COLORS.darkTransparentTwo};
-  color: white;
+  margin-top: 2rem;
+  padding-top: 10px;
 
   border-radius: 15px 15px 0 0;
-  padding-top: 0.5rem;
+  font-size: 20px;
 
-  /* box-shadow: 0px 5px 9px 0.5px #252525; */
+  color: white;
+  background-color: ${COLORS.darkTransparentTwo};
 `;
 
 const DropdownButton = styled.button`
@@ -105,13 +94,8 @@ const DropdownButton = styled.button`
   justify-content: space-evenly;
   flex-wrap: wrap;
 
-  width: 80vw;
   z-index: 100;
 
-  background-color: ${COLORS.darkTransparentTwo};
-  color: white;
-
-  margin: 2rem 1rem 0;
   margin-top: 0;
 
   padding-top: 0.5rem;
@@ -122,14 +106,6 @@ const DropdownButton = styled.button`
     outline: 2px dotted transparent;
     outline-offset: 2px;
   }
-`;
-
-const DropdownSelector = styled.div`
-  display: flex;
-  flex-grow: 1;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 `;
 
 const P = styled.p`
@@ -143,12 +119,10 @@ const ItemDiv = styled.div`
   align-items: center;
   justify-content: center;
 
-  padding: 0.3rem 0;
-
-  /* background-color: ${COLORS.cultured}; */
+  padding: 10px 0;
 `;
 
-const FullReciP = styled.p`
+const FullRecipe = styled.div`
   display: flex;
   align-items: center;
 

@@ -52,6 +52,7 @@ export const responseRecipeError = (error) => {
 
 export const addToFavourites = (recipe, favourites) => {
   console.log(recipe);
+  console.log(favourites);
   return {
     type: "ADD_TO_FAVOURITES",
     recipe,

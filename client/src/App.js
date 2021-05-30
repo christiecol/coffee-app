@@ -35,14 +35,18 @@ function App() {
   );
 
   useEffect(() => {
+    console.log("LOG1 UE1", persistedState);
     const data = localStorage.getItem("user");
     if (data) {
       persistedState = JSON.parse(data);
     }
+    console.log("LOG2 UE1", persistedState);
   }, []);
 
   useEffect(() => {
+    console.log("LOG1 UE2", persistedState);
     localStorage.setItem("user", JSON.stringify(persistedState));
+    console.log("LOG2 UE2", persistedState);
   });
 
   return (

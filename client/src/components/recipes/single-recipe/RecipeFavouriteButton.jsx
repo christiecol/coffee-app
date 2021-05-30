@@ -21,11 +21,8 @@ export const RecipeFavouriteButton = ({ recipe }) => {
   const [toggle, setToggle] = useState(false);
 
   const favourites = useSelector((state) => {
-    return state?.users?.favourites;
+    return state?.users?.user?.favourites;
   });
-  // console.log(favourites);
-  // console.log("currentemail", currentUserEmail);
-  const colored = favourites?.includes(recipe._id);
 
   const handleFavouriteRecipe = () => {
     if (!toggle) {
@@ -101,6 +98,7 @@ const HeaderDiv = styled.div`
 `;
 const IconButton = styled.button`
   all: unset;
+  padding: 3px 0;
 
   &:focus {
     box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
@@ -117,10 +115,9 @@ const DropdownSelector = styled.div`
   align-items: center;
 
   width: 80vw;
-  padding-top: 0.5rem;
 
   color: white;
-  background-color: ${COLORS.darkTransparentTwo};
+  /* background-color: ${COLORS.darkTransparentTwo}; */
 
   &:focus {
     box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;

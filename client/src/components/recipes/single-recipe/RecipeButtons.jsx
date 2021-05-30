@@ -9,6 +9,7 @@ export const RecipeButtons = ({ recipes, handleFavouritesClick }) => {
         return (
           <RecipeComponent
             recipe={recipe}
+            key={recipe._id}
             handleFavouritesClick={handleFavouritesClick}
           />
         );
